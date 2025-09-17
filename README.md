@@ -59,8 +59,7 @@ elmo-hikes/
 
 
 ## Contributors
-- **Your Name** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- **Tommy White** - BCIT CST Student, has been learning code for around 3 years. Currently familiar with C#, Java, and a bit of C++. I also like playing video games in my free time alone or with friends
 
 ---
 
