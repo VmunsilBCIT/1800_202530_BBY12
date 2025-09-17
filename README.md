@@ -61,8 +61,9 @@ elmo-hikes/
 ## Contributors
 - **Tommy White** - BCIT CST Student, has been learning code for around 3 years. Currently familiar with C#, Java, and a bit of C++. I also like playing video games in my free time alone or with friends
 - **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
+- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- **Personnal instructions** - PJ, a group member of the group BBY12。
 - **Edward** - BCIT CST Student. My personality is pretty easygoing, though I might be a bit shy sometimes because of the language barrier
-
 
 ---
 
