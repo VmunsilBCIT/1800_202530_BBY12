@@ -59,7 +59,7 @@ elmo-hikes/
 
 
 ## Contributors
-- **Your Name** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
+- **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
 ---
