@@ -61,6 +61,7 @@ elmo-hikes/
 ## Contributors
 - **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- **Personnal instructions** - PJ, a group member of the group BBY12。
 
 ---
 
