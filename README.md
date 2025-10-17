@@ -1,8 +1,8 @@
-# Elmo Hikes
+# WaySync
 
 ## Overview
 
-Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
+WaySync is a client-side JavaScript web application that helps users plan meet ups with nearby friends or helps in communting together. The app displays allows for easy map access, being interactive allowing you to interact with the users around you that you have added. Users can ping nearby friends and send them notifications or messages.
 
 Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
 
@@ -10,10 +10,10 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ## Features
 
-- Browse a list of curated hiking trails with images and details
-- Mark and unmark trails as favorites
-- View a personalized list of favorite hikes
-- Responsive design for desktop and mobile
+- Browse an interactive map
+- Add your friends and see your and their location
+- Customize your profile to be fit to you
+- Easy pinging to nearby community members
 
 ---
 
@@ -31,16 +31,16 @@ Example:
 ## Usage
 
 1. Open your browser and visit `http://localhost:3000`.
-2. Browse the list of hiking trails displayed on the main page.
-3. Click the heart icon (or similar) to mark a trail as a favorite.
-4. View your favorite hikes in the favorites section.
+2. Check the main map for nearby friends.
+3. Ping nearby community members and meet up or transit together.
+4. Send messsages or notifications to people you're close to.
 
 ---
 
 ## Project Structure
 
 ```
-elmo-hikes/
+WaySync/
 ├── src/
 │   ├── main.js
 ├── styles/
@@ -57,16 +57,15 @@ elmo-hikes/
 ## Contributors
 
 - **Tommy White** - BCIT CST Student, has been learning code for around 3 years. Currently familiar with C#, Java, and a bit of C++. I also like playing video games in my free time alone or with friends
-- **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
-- **Perry Jiang** - BCIT CST Student, PJ, a group member of the group BBY12。
-- **Edward Liang** - BCIT CST Student. My personality is pretty easygoing, though I might be a bit shy sometimes because of the language barrier
+  - **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
+  - **YPerry Jiang** - BCIT CST Student, PJ, a group member of the group BBY12。
+  - **Edward Liang** - BCIT CST Student. My personality is pretty easygoing, though I might be a bit shy sometimes because of the language barrier
 
 ---
 
 ## Acknowledgments
 
-- Trail data and images are for demonstration purposes only.
-- Code snippets were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
+- Code snippets were used from Bootstrap.
 - Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
 
 ---
@@ -75,14 +74,14 @@ elmo-hikes/
 
 ### Limitations
 
-- Limited trail details (e.g., no live trail conditions).
-- Accessibility features can be further improved.
+- Limited use cases when first downloading app if you don't have anyone to use it with.
+- Personal customization could be improved.
 
 ### Future Work
 
-- Implement map view and trailhead directions.
-- Add filtering and sorting options (e.g., by difficulty, distance).
-- Create a dark mode for better usability in low-light conditions.
+- XXX
+- XXX
+- XXX
 
 ---
 
