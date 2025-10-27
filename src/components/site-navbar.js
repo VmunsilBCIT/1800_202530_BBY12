@@ -14,43 +14,23 @@ class SiteNavbar extends HTMLElement {
   renderNavbar() {
     this.innerHTML = `
             <!-- Navbar: single source of truth -->
-            <nav class="navbar navbar-expand-lg bg-primary-subtle">
-      <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Settings</a
-              >
-            </li>
-          </ul>
-
-          <a class="navbar-brand mx-auto" href="#">
-            <img src="./images/WaySync Logo.png" height="60" /> WaySync
-          </a>
-
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Profile</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            <div class="navigation">
+        <img
+          id="setting"
+          src="images/icon-settings.PNG"
+          alt="Settings"
+          width="100"
+          height="100"
+        />
+        WaySync
+        <img
+          id="account"
+          src="images/icon-account.PNG"
+          alt="Account"
+          width="100"
+          height="100"
+        /></div
+    >
         `;
   }
 
