@@ -14,6 +14,7 @@ class SiteNavbar extends HTMLElement {
   renderNavbar() {
     this.innerHTML = `
             <!-- Navbar: single source of truth -->
+<<<<<<< HEAD
             <nav class="navbar navbar-expand-lg bg-primary-subtle">
       <div class="container-fluid">
         <button
@@ -51,6 +52,25 @@ class SiteNavbar extends HTMLElement {
         </div>
       </div>
     </nav>
+=======
+            <div class="navigation">
+        <img
+          id="setting"
+          src="images/icon-settings.PNG"
+          alt="Settings"
+          width="100"
+          height="100"
+        />
+        WaySync
+        <img
+          id="account"
+          src="images/icon-account.PNG"
+          alt="Account"
+          width="100"
+          height="100"
+        /></div
+    >
+>>>>>>> 55770273086af3cbdd9b52ac6539a8172cef83c2
         `;
   }
 

@@ -12,6 +12,11 @@ body {
   background-size: cover;
   color: white;
   text-align: center;
+<<<<<<< HEAD
+=======
+  margin: 0;
+  min-height: 100vh;
+>>>>>>> 55770273086af3cbdd9b52ac6539a8172cef83c2
 }
 
 #welcome {
@@ -19,3 +24,51 @@ body {
   text-align: center;
   color: white;
 }
+<<<<<<< HEAD
+=======
+
+.navigation{
+  background-color: #0DCAF0;
+  min-height: 15vh;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+#setting, #back{
+     float: left;
+     padding: 10px;
+}
+
+#account {
+     float: right;
+     padding: 10px;
+}
+
+#friends{
+  float: right;
+  height: 19vh;
+  width: auto;
+  padding-bottom: 18px;
+}
+
+#home{
+  padding: 10px;
+  height: 12vh;
+  width: auto;
+}
+
+footer {
+  background-color: #0DCAF0;
+  min-height: 15vh;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+footer::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+>>>>>>> 55770273086af3cbdd9b52ac6539a8172cef83c2
