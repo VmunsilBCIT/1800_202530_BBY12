@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WaySync</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Web Components for shared navbar and footer layout -->
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+
+  <body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+
+    <!-- Main content goes here -->
+    <div class="container py-5" style="max-width: 420px">
+      <!-- Alerts -->
+      <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
+
+      <!-- Login -->
+      <div id="loginView">
+        <h2 class="auth-title">Login</h2>
+        <form id="loginForm" novalidate>
+          <input
+            type="email"
+            id="loginEmail"
+            class="auth-input"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="loginPassword"
+            class="auth-input"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="auth-btn">Login</button>
+        </form>
+        <p class="auth-switch">
+          Don't have an account?
+          <a href="#" id="toSignup">Sign up!</a>
+        </p>
+      </div>
+      
+      <!-- Signup -->
+      <div id="signupView" class="d-none">
+        <h2 class="auth-title">Sign up</h2>
+        <form id="signupForm" novalidate>
+          <input
+            type="text"
+            id="signupName"
+            class="auth-input"
+            placeholder="Name"
+            required
+          />
+          <input
+            type="email"
+            id="signupEmail"
+            class="auth-input"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="signupPassword"
+            class="auth-input"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="auth-btn">Sign up</button>
+        </form>
+        <p class="auth-switch">
+          Already have an account?
+          <a href="#" id="toLogin">Login!</a>
+        </p>
+      </div>
+
+    <!-- our own footer goes here -->
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript scripts go here      -->
+    <!---------------------------------------------->
+
+    <script type="module" src="/src/app.js"></script>
+
+    <!-- Firebase and authentication related scripts -->
+    <!-- The order of loading matters -->
+    <script type="module" src="/src/firebaseConfig.js"></script>
+    <script type="module" src="/src/authentication.js"></script>
+    <script type="module" src="/src/loginSignup.js"></script>
+  </body>
+</html>
