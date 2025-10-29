@@ -10,13 +10,10 @@ body {
   background-image: url("/images/city.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
+  color: black;
   text-align: center;
-<<<<<<< HEAD
-=======
   margin: 0;
   min-height: 100vh;
->>>>>>> 55770273086af3cbdd9b52ac6539a8172cef83c2
 }
 
 #welcome {
@@ -24,8 +21,6 @@ body {
   text-align: center;
   color: white;
 }
-<<<<<<< HEAD
-=======
 
 .navigation{
   background-color: #0DCAF0;
@@ -71,4 +66,3 @@ footer::after {
   display: block;
   clear: both;
 }
->>>>>>> 55770273086af3cbdd9b52ac6539a8172cef83c2
