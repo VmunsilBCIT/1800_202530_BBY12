@@ -32,6 +32,11 @@ class SiteNavbar extends HTMLElement {
         /></div
     >
         `;
+
+    const accountImg = this.querySelector("#account");
+    accountImg.addEventListener("click", () => {
+    window.location.href = "/profile.html";
+});
   }
 
   renderAuthControls() {

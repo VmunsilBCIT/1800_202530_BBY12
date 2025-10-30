@@ -54,6 +54,10 @@ body {
   width: auto;
 }
 
+#account {
+  cursor: pointer;
+}
+
 footer {
   background-color: #0dcaf0;
   min-height: 15vh;
