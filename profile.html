@@ -21,15 +21,52 @@
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
-  <body>
+  <body id="profile">
     <!------------------------------>
     <!-- Your HTML Layout go here -->
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
+    
+
+
 
     <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
+
+
+<div class="container-fluid py-5" id="profile-layout">
+  <div class="row justify-content-center align-items-center vh-100">
+    
+    <div class="col-md-4 text-center mb-4 mb-md-0" id="leftside">
+      
+      <div class="profile-pic">
+        <img src="images/icon-account.PNG" id="output" width="160" />
+        <label class="-label" for="file">
+          <span class="glyphicon glyphicon-camera"></span>
+        </label>
+        <input id="file" type="file"/>
+      </div>
+
+      <h5 class="fw-bold mb-2" id="username-display" style="cursor: pointer;" data-tooltip="Click to edit">
+        Your Username </h5>
+
+    </div>
+
+    <div class="col-md-5 text center">
+      <h3 class="text-center mb-4 fw-bold">Profile Info</h3>
+      
+      <div class="profile-info d-inline-block text-start">
+          <p><strong>Username:</strong> <span id="name-goes-here">Your name</span></p>
+          <p><strong>Email:</strong> <span id="email-goes-here">email@gmail.ca</span></p>
+          <p><strong>Bio:</strong> <span id="bio-goes-here">Click to edit</span></p>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -41,6 +78,6 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/profile.js"></script>
   </body>
 </html>

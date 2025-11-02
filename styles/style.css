@@ -18,6 +18,99 @@ body {
   overflow: hidden;
 }
 
+#leftside{
+  padding-left: 150px;
+}
+
+.profile-info{
+  padding-left: 150px;
+}
+
+.profile-info p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.profile-info strong {
+  width: 90px;
+  display: inline-block;
+}
+
+#profile{
+  background-image: url("/images/lightblue.jpg");
+}
+
+#profile-layout {
+  background-color: #d8ebfa;
+  height: 100vh;
+  min-height: calc(100vh - 15vh - 15vh); 
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+#profile-layout .row {
+  padding-top: 3rem;
+  align-items: flex-start !important;
+  min-height: 100vh;
+}
+
+#profile-layout img {
+  background-color: white;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#profile-layout textarea:disabled,
+#profile-layout input:disabled {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+#profile-layout h3 {
+  color: #000;
+}
+
+#profile-layout .form-label {
+  text-align: left;
+  display: block;
+}
+
+#username-display {
+  position: relative;
+}
+
+#username-display::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%; /* show above the text */
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: #000;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+#username-display:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+@media (max-width: 768px) {
+  #profile-layout .row {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 0;
+  }
+  #profile-layout textarea {
+    width: 100%;
+  }
+}
+
 #welcome {
   font-size: 50px;
   text-align: center;
