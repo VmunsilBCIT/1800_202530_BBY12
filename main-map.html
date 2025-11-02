@@ -3,47 +3,53 @@
   <head>
     <title>WaySync</title>
     <meta name="comp1800 BBY-12 WaySync" content="WaySync 1800 App" />
-
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Web Components for shared navbar and footer layout -->
-    <script type="module" src="/src/components/site-navbar.js"></script>
-    <script type="module" src="/src/components/site-footer.js"></script>
-
-    <!-- Other libraries go here -->
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Link to styles of your own -->
+
+    <!-- Leaflet (for map) -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-sA+e2TuZkG03A1sug8CwYfUyZx+rOLHjAc+FS8z1P94="
+      crossorigin=""
+    />
+
+    <!-- Custom styles -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
-  <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
+  <body class="map-page">
+    <!-- Top navbar -->
+    <header class="map-header d-flex justify-content-between align-items-center px-3">
+      <button class="icon-btn" id="settingsBtn">⚙️</button>
+      <h3 class="map-title mb-0">WaySync</h3>
+      <button class="icon-btn" id="profileBtn">👤</button>
+    </header>
 
-    <!-- our own navbar goes here -->
-    <site-navbar></site-navbar>
-
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-
-    <main class="container-fluid p-0">
-      <div id="map" style="width: 100%; height: 100dvh"></div>
+    <!-- Map area -->
+    <main id="map-container">
+      <div id="map"></div>
+      <button id="pingBtn" class="btn btn-light shadow-sm">Ping nearby Friends</button>
     </main>
 
-    <!-- our own footer goes here -->
-    <site-footer></site-footer>
+    <!-- Bottom navigation bar -->
+    <nav class="bottom-nav d-flex justify-content-around align-items-center">
+      <a href="main.html" class="nav-icon">⬅️</a>
+      <a href="main.html" class="nav-icon">🏠</a>
+      <a href="profile.html" class="nav-icon">👥</a>
+    </nav>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
-    <script type="module" src="./src/main.js"></script>
+    <!-- Scripts -->
+    <script
+      type="module"
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.esm.js"
+    ></script>
     <script type="module" src="./src/map.js"></script>
   </body>
 </html>
