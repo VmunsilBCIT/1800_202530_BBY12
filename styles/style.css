@@ -216,3 +216,72 @@ footer::after {
     font-size: 1.6rem;
   }
 }
+/* ===========================
+   MAP PAGE STYLE (WaySync)
+   =========================== */
+
+/* Body Layout */
+body.map-page {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e8e0e4;
+}
+
+/* Top header */
+.map-header {
+  background-color: #f2f2f2;
+  height: 55px;
+  border-bottom: 1px solid #ccc;
+}
+
+.map-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* Small round buttons */
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Map container */
+#map-container {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(90%) brightness(0.9); 
+}
+
+/* Ping button */
+#pingBtn {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Bottom nav */
+.bottom-nav {
+  background-color: #f2f2f2;
+  height: 55px;
+  border-top: 1px solid #ccc;
+}
+
+.nav-icon {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #000;
+}
