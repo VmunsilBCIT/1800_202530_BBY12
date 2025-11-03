@@ -2,32 +2,25 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 function showMap() {
-  //--------------------------------------------------------------
-  // Initialize the Mapbox map
-  //--------------------------------------------------------------
+  // 1️⃣ Initialize the Mapbox map
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
   const map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/dark-v11", // 
-    center: [-73.935242, 40.73061], // 
+    style: "mapbox://styles/mapbox/dark-v11", // Dark map style
+    center: [-73.935242, 40.73061], // Default center (New York)
     zoom: 11,
   });
 
-  //--------------------------------------------------------------
-  // Add default controls (zoom, rotate)
-  //--------------------------------------------------------------
+  // 2️⃣ Add zoom and rotation controls
   map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
-  //--------------------------------------------------------------
-  // Add user's location pin + range circle
-  //--------------------------------------------------------------
+  // 3️⃣ Add user pin when map is fully loaded
   map.once("load", () => {
     addUserPin(map);
   });
 
-  //--------------------------------------------------------------
-  // Ping button click event
-  //--------------------------------------------------------------
+  // 4️⃣ "Ping nearby Friends" button event
   const pingBtn = document.getElementById("pingBtn");
   if (pingBtn) {
     pingBtn.addEventListener("click", () => {
@@ -36,9 +29,7 @@ function showMap() {
   }
 }
 
-//--------------------------------------------------------------
-// Add user pin (marker + circle range)
-//--------------------------------------------------------------
+// 🧭 Add user location pin and range circle
 function addUserPin(map) {
   navigator.geolocation.getCurrentPosition(
     (position) => {
@@ -46,9 +37,8 @@ function addUserPin(map) {
         position.coords.longitude,
         position.coords.latitude,
       ];
-      console.log("User location:", userLocation);
 
-
+      // Add user location source
       map.addSource("userLocation", {
         type: "geojson",
         data: {
@@ -56,17 +46,13 @@ function addUserPin(map) {
           features: [
             {
               type: "Feature",
-              geometry: {
-                type: "Point",
-                coordinates: userLocation,
-              },
-              properties: {},
+              geometry: { type: "Point", coordinates: userLocation },
             },
           ],
         },
       });
 
-  
+      // Add transparent radius circle (~5 km)
       map.addLayer({
         id: "userRadius",
         type: "circle",
@@ -75,7 +61,7 @@ function addUserPin(map) {
           "circle-radius": {
             stops: [
               [0, 0],
-              [20, 5000 / 2], 
+              [20, 5000 / 2],
             ],
             base: 2,
           },
@@ -85,20 +71,20 @@ function addUserPin(map) {
         },
       });
 
-
+      // Add user pin (black circle with white border)
       map.addLayer({
         id: "userPin",
         type: "circle",
         source: "userLocation",
         paint: {
-          "circle-color": "#000000",
+          "circle-color": "#000",
           "circle-radius": 10,
-          "circle-stroke-color": "#ffffff",
+          "circle-stroke-color": "#fff",
           "circle-stroke-width": 3,
         },
       });
 
-      
+      // Smooth fly to user's location
       map.flyTo({
         center: userLocation,
         zoom: 12,
@@ -106,8 +92,8 @@ function addUserPin(map) {
         curve: 1.4,
       });
     },
-    (err) => {
-      console.error("Failed to get location:", err);
+    (error) => {
+      console.error("Failed to get user location:", error);
     }
   );
 }

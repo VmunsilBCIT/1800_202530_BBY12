@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>WaySync</title>
-    <meta name="comp1800 BBY-12 WaySync" content="WaySync 1800 App" />
+    <title>WaySync Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Shared Components -->
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
 
     <!-- Bootstrap -->
     <link
@@ -12,44 +15,33 @@
       rel="stylesheet"
     />
 
-    <!-- Leaflet (for map) -->
+    <!-- Mapbox CSS -->
     <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css"
       rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-sA+e2TuZkG03A1sug8CwYfUyZx+rOLHjAc+FS8z1P94="
-      crossorigin=""
     />
 
-    <!-- Custom styles -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
-  <body class="map-page">
-    <!-- Top navbar -->
-    <header class="map-header d-flex justify-content-between align-items-center px-3">
-      <button class="icon-btn" id="settingsBtn">⚙️</button>
-      <h3 class="map-title mb-0">WaySync</h3>
-      <button class="icon-btn" id="profileBtn">👤</button>
-    </header>
+  <body>
+    <!-- ✅ Blue Top Navigation Bar -->
+    <site-navbar></site-navbar>
 
-    <!-- Map area -->
-    <main id="map-container">
+    <!-- ✅ Main Map Section -->
+    <main class="container-fluid p-0">
       <div id="map"></div>
-      <button id="pingBtn" class="btn btn-light shadow-sm">Ping nearby Friends</button>
+      <button id="pingBtn" class="btn btn-light shadow-sm">
+        Ping nearby Friends
+      </button>
     </main>
 
-    <!-- Bottom navigation bar -->
-    <nav class="bottom-nav d-flex justify-content-around align-items-center">
-      <a href="main.html" class="nav-icon">⬅️</a>
-      <a href="main.html" class="nav-icon">🏠</a>
-      <a href="profile.html" class="nav-icon">👥</a>
-    </nav>
+    <!-- ✅ Blue Bottom Navigation Bar -->
+    <site-footer></site-footer>
 
-    <!-- Scripts -->
-    <script
-      type="module"
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.esm.js"
-    ></script>
+    <!-- Mapbox JS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script type="module" src="./src/map.js"></script>
   </body>
 </html>
