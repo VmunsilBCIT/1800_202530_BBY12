@@ -2,59 +2,43 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 function showMap() {
-  //--------------------------------------------------------------
-  // Initialize the Mapbox map
-  // With your access token from .env and initial settings
-  //--------------------------------------------------------------
+  // 1️⃣ Initialize the Mapbox map
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
   const map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/standard",
-    center: [-123.00163752324765, 49.25324576104826],
-    zoom: 10,
+    style: "mapbox://styles/mapbox/dark-v11", // Dark map style
+    center: [-73.935242, 40.73061], // Default center (New York)
+    zoom: 11,
   });
 
-  //------------------------------------------------------------------------
-  // Add controls to the map here, and keep things organized
-  // You can call additional controls/setup functions from here.
-  //------------------------------------------------------------------------
-  addControls();
-  function addControls() {
-    // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());
+  // 2️⃣ Add zoom and rotation controls
+  map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
-    // Add other controls here as needed
-    //addGeolocationControl(map);
-    //addGeoCoderControl(map);
-  }
-
-  //--------------------------------------------------------------
-  // Add layers, sources, etc. to the map, and keep things organized.
-  // You can call additional layers/setup functions from here.
-  // Run setupMap() once when the style loads.
-  //--------------------------------------------------------------
-  map.once("load", () => setupMap(map)); // run once for the initial style
-  function setupMap(map) {
+  // 3️⃣ Add user pin when map is fully loaded
+  map.once("load", () => {
     addUserPin(map);
-    //add other layers and stuff here
-    //addCustomLayer1(map);
-    //addCustomLayer2(map);
-    //addCustomLayer3(map);
+  });
+
+  // 4️⃣ "Ping nearby Friends" button event
+  const pingBtn = document.getElementById("pingBtn");
+  if (pingBtn) {
+    pingBtn.addEventListener("click", () => {
+      alert("📍 Pinging nearby friends...");
+    });
   }
 }
 
-//-----------------------------------------------------
-// Add pin for showing where the user is.
-// This is a separate function so that we can use a different
-// looking pin for the user.
-// This version uses a pin that is just a circle.
-//------------------------------------------------------
+// 🧭 Add user location pin and range circle
 function addUserPin(map) {
-  // Adds user's current location as a source to the map
-  navigator.geolocation.getCurrentPosition((position) => {
-    const userLocation = [position.coords.longitude, position.coords.latitude];
-    console.log(userLocation);
-    if (userLocation) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const userLocation = [
+        position.coords.longitude,
+        position.coords.latitude,
+      ];
+
+      // Add user location source
       map.addSource("userLocation", {
         type: "geojson",
         data: {
@@ -62,34 +46,56 @@ function addUserPin(map) {
           features: [
             {
               type: "Feature",
-              geometry: {
-                type: "Point",
-                coordinates: userLocation,
-              },
-              properties: {
-                description: "Your location",
-              },
+              geometry: { type: "Point", coordinates: userLocation },
             },
           ],
         },
       });
 
-      // Creates a layer above the map displaying the pins
-      // Add a layer showing the places.
+      // Add transparent radius circle (~5 km)
       map.addLayer({
-        id: "userLocation",
+        id: "userRadius",
         type: "circle",
         source: "userLocation",
         paint: {
-          // customize colour and size
-          "circle-color": "blue",
-          "circle-radius": 9,
-          "circle-stroke-width": 6,
-          "circle-stroke-color": "#ffffff",
+          "circle-radius": {
+            stops: [
+              [0, 0],
+              [20, 5000 / 2],
+            ],
+            base: 2,
+          },
+          "circle-color": "rgba(255,255,255,0.15)",
+          "circle-stroke-color": "rgba(255,255,255,0.4)",
+          "circle-stroke-width": 2,
         },
       });
+
+      // Add user pin (black circle with white border)
+      map.addLayer({
+        id: "userPin",
+        type: "circle",
+        source: "userLocation",
+        paint: {
+          "circle-color": "#000",
+          "circle-radius": 10,
+          "circle-stroke-color": "#fff",
+          "circle-stroke-width": 3,
+        },
+      });
+
+      // Smooth fly to user's location
+      map.flyTo({
+        center: userLocation,
+        zoom: 12,
+        speed: 1.2,
+        curve: 1.4,
+      });
+    },
+    (error) => {
+      console.error("Failed to get user location:", error);
     }
-  });
+  );
 }
 
 showMap();
