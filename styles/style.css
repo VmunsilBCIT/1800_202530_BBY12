@@ -18,11 +18,11 @@ body {
   overflow: hidden;
 }
 
-#leftside{
+#leftside {
   padding-left: 150px;
 }
 
-.profile-info{
+.profile-info {
   padding-left: 150px;
 }
 
@@ -35,14 +35,14 @@ body {
   display: inline-block;
 }
 
-#profile{
+#profile {
   background-image: url("/images/lightblue.jpg");
 }
 
 #profile-layout {
   background-color: #d8ebfa;
   height: 100vh;
-  min-height: calc(100vh - 15vh - 15vh); 
+  min-height: calc(100vh - 15vh - 15vh);
   padding-top: 6rem;
   padding-bottom: 6rem;
 }
@@ -147,6 +147,26 @@ body {
   padding: 10px;
   height: 12vh;
   width: auto;
+}
+
+#pingBtn {
+  position: absolute;
+  bottom: 180px; /* distance from bottom of page */
+  left: 50%; /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 10; /* ensure it's above the map */
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+#pingBtn:hover {
+  background-color: #e9f9ff;
+  border-color: #0dcaf0;
 }
 
 #account {
