@@ -15,14 +15,15 @@ body {
   margin: 0;
   min-height: 100vh;
   padding: 0;
-  overflow: hidden;
+  padding-top: 70px; /* space for fixed top navbar */
+  padding-bottom: 70px; /* space for fixed bottom navbar */
 }
 
-#leftside{
+#leftside {
   padding-left: 150px;
 }
 
-.profile-info{
+.profile-info {
   padding-left: 150px;
 }
 
@@ -35,14 +36,14 @@ body {
   display: inline-block;
 }
 
-#profile{
+#profile {
   background-image: url("/images/lightblue.jpg");
 }
 
 #profile-layout {
   background-color: #d8ebfa;
   height: 100vh;
-  min-height: calc(100vh - 15vh - 15vh); 
+  min-height: calc(100vh - 15vh - 15vh);
   padding-top: 6rem;
   padding-bottom: 6rem;
 }
@@ -81,7 +82,7 @@ body {
 #username-display::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: 100%; /* show above the text */
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-5px);
   background-color: #000;
@@ -117,59 +118,117 @@ body {
   color: rgb(0, 0, 0);
 }
 
-.navigation {
-  background-color: #0dcaf0;
-  min-height: 15vh;
+/* ===============================
+   ✅ Top Navbar (Blue Theme)
+   =============================== */
+site-navbar,
+.top-navigation {
+  display: block;
+}
+
+
+site-navbar .navigation,
+.top-navigation {
+  background-color: #0dcaf0; /* light blue bar */
   color: white;
-  font-size: 50px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  border-bottom: 2px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* center text */
+site-navbar .navigation span,
+.top-navigation span {
+  flex-grow: 1;
   text-align: center;
+  color: white;
 }
 
-#setting,
-#back {
-  float: left;
-  padding: 10px;
-}
-
-#account {
-  float: right;
-  padding: 10px;
-}
-
-#friends {
-  float: right;
-  height: 14vh;
-  width: auto;
-  padding: 10px;
-}
-
-#home {
-  padding: 10px;
-  height: 12vh;
-  width: auto;
-}
-
-#account {
+/* icons inside navbar */
+site-navbar .navigation img,
+.top-navigation img {
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 
-footer {
-  background-color: #0dcaf0;
-  min-height: 15vh;
+/* ===============================
+   Ping Button (Unchanged)
+   =============================== */
+#pingBtn {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pingBtn:hover {
+  background-color: #e9f9ff;
+  border-color: #0dcaf0;
+}
+
+/* ===============================
+   ✅ Bottom Footer Navbar (Blue Theme)
+   =============================== */
+site-footer,
+.bottom-navigation {
+  display: block;
+}
+
+
+site-footer .navigation,
+.bottom-navigation {
+  background-color: #0dcaf0; /* light blue bar */
   color: white;
-  font-size: 50px;
-  text-align: center;
+  height: 60px;
+  display: flex;
+  justify-content: space-between; /* left-center-right */
+  align-items: center;
+  padding: 0 30px;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
+  border-top: 2px solid #ccc;
+  z-index: 1000;
 }
 
-footer::after {
-  content: "";
-  display: block;
-  clear: both;
+/* footer icons */
+site-footer .navigation img,
+.bottom-navigation img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
+/* ===============================
+   Page Spacing for Fixed Bars
+   =============================== */
+body {
+  padding-top: 70px; /* space below navbar */
+  padding-bottom: 70px; /* space above footer */
+}
+
+/* ===============================
+   Landing Page Styles (unchanged)
+   =============================== */
 .landing-container {
   position: relative;
   width: 100vw;
@@ -234,6 +293,9 @@ footer::after {
   }
 }
 
+/* ===============================
+   Auth Page Styles (unchanged)
+   =============================== */
 .auth-container {
   display: flex;
   flex-direction: column;
@@ -308,4 +370,77 @@ footer::after {
   .auth-title {
     font-size: 1.6rem;
   }
+}
+/* ===============================
+   ✅ FIXED BLUE TOP NAVBAR
+   =============================== */
+site-navbar .navigation {
+  background-color: #0dcaf0; /* blue bar */
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  border-bottom: 2px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* center the title */
+site-navbar .navigation span {
+  flex-grow: 1;
+  text-align: center;
+  color: white;
+}
+
+/* icons */
+site-navbar .navigation img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* login button (if showing) */
+site-navbar .navigation #authControls .btn {
+  color: white;
+  border-color: white;
+}
+
+/* spacing so content isn't hidden under navbar */
+body {
+  padding-top: 70px;
+}
+/* ===============================
+   ✅ FIXED BLUE BOTTOM FOOTER
+   =============================== */
+site-footer .navigation {
+  background-color: #0dcaf0;
+  color: white;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 2px solid #ccc;
+  z-index: 1000;
+}
+
+site-footer .navigation img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* extra space for bottom bar */
+body {
+  padding-bottom: 70px;
 }
