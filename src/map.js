@@ -81,11 +81,22 @@ function addUserPin(map) {
         type: "circle",
         source: "userLocation",
         paint: {
-          // customize colour and size
-          "circle-color": "blue",
-          "circle-radius": 9,
-          "circle-stroke-width": 6,
-          "circle-stroke-color": "#ffffff",
+          "circle-color": "rgba(0, 191, 255, 1)", // light blue
+          "circle-radius": 10,
+          "circle-stroke-width": 2,
+          "circle-stroke-color": "rgba(255, 255, 255, 1)",
+        },
+      });
+
+      // Outer halo / overlay circle
+      map.addLayer({
+        id: "userLocationHalo",
+        type: "circle",
+        source: "userLocation",
+        paint: {
+          "circle-color": "rgba(0, 191, 255, 0.25)",
+          "circle-radius": 65,
+          "circle-stroke-width": 0,
         },
       });
     }
