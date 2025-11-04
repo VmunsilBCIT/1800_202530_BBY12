@@ -149,6 +149,43 @@ body {
   width: auto;
 }
 
+#pingBtn {
+  position: absolute;
+  bottom: 180px;              /* distance from bottom of page */
+  left: 50%;                 /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 10;               /* ensure it's above the map */
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+#pingBtn:hover {
+  background-color: #e9f9ff;
+  border-color: #0dcaf0;
+}
+
+.ping-circle {
+  position: absolute;
+  top: 50%;         
+  left: 50%;
+  width: 280px;       
+  height: 280px;
+  background-color: rgba(13, 202, 240, 0.25); 
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;  
+  z-index: 5;            
+  animation: pulse 2s infinite ease-in-out; 
+}
+
+
+
+
 #account {
   cursor: pointer;
 }
