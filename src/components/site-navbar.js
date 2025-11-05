@@ -20,7 +20,7 @@ class SiteNavbar extends HTMLElement {
           width="100"
           height="100"
         />
-        WaySync
+        <span id="mapway">WaySync</span>
         <img
           id="account"
           src="images/icon-account.PNG"
@@ -37,8 +37,25 @@ class SiteNavbar extends HTMLElement {
       accountImg.addEventListener("click", () => {
         window.location.href = "/profile.html";
       });
+    } 
+    
+    const settingImg = this.querySelector("#setting");
+    if (settingImg) {
+      settingImg.addEventListener("click", () => {
+        window.location.href = "/settings.html";
+      });
+    }
+
+    const waySyncSpan = this.querySelector("#mapway");
+    if (waySyncSpan) {
+      waySyncSpan.addEventListener("click", () => {
+        window.location.href = "/main-map.html";
+      });
     }
   }
+
+    
+  
 
   renderAuthControls() {
     const authControls = this.querySelector("#authControls");

@@ -28,8 +28,28 @@ class SiteFooter extends HTMLElement {
             height="100"
           />
         </div></footer>
-        `;
-  }
+        `; 
+        const friendsImg = this.querySelector("#friends");
+        if (friendsImg) {
+          friendsImg.addEventListener("click", () => {
+            window.location.href = "/friends.html";
+          });
+        }
+
+        const homeImg = this.querySelector("#home");
+        if (homeImg) {
+          homeImg.addEventListener("click", () => {
+            window.location.href = "/main.html";
+          });
+        }
+
+        const backImg = this.querySelector("#back");
+        if (backImg) {
+          backImg.addEventListener("click", () => {
+            history.back(-1);
+          });
+        }
+  } 
 }
 
 customElements.define("site-footer", SiteFooter);

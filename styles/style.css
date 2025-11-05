@@ -169,7 +169,7 @@ body {
   border-color: #0dcaf0;
 }
 
-#account {
+#account, #setting, #mapway, #friends, #home, #back {
   cursor: pointer;
 }
 
