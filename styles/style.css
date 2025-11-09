@@ -169,7 +169,12 @@ body {
   border-color: #0dcaf0;
 }
 
-#account, #setting, #mapway, #friends, #home, #back {
+#account,
+#setting,
+#mapway,
+#friends,
+#home,
+#back {
   cursor: pointer;
 }
 
@@ -327,5 +332,118 @@ footer::after {
 
   .auth-title {
     font-size: 1.6rem;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+}
+
+/* Shared button style */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 160px;
+  height: 60px;
+  background-color: #d9d9d9;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover and focus effect (blue outline) */
+.button:hover,
+.button:focus {
+  border-color: #0078ff;
+  transform: scale(1.02);
+}
+
+/* Icon styling */
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Text label */
+.label {
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+/* User ID display */
+.user-id-display {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-container {
+  background-color: #d9d9d9;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+}
+
+#search-label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#search-input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#search-button {
+  padding: 8px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#search-button:hover {
+  background-color: #005fcc;
+}
+
+#result-container {
+  margin-top: 10px;
+  background: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+#result-text {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Make buttons responsive on smaller screens */
+@media (max-width: 400px) {
+  .button {
+    width: 140px;
+    height: 50px;
+  }
+
+  .label {
+    font-size: 14px;
   }
 }
