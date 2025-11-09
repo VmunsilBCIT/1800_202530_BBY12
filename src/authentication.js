@@ -1,15 +1,10 @@
 // src/authentication.js
 // ------------------------------------------------------------
-// Part of the COMP1800 Projects 1 Course (BCIT).
-// Starter code provided for students to use and adapt.
-// Contains reusable Firebase Authentication functions
-// (login, signup, logout, and auth state checks).
-// -------------------------------------------------------------
+// Firebase Auth + Firestore userID creation (COMP1800 project)
+// Development-friendly version with write confirmation
+// ------------------------------------------------------------
 
-// Import the initialized Firebase Authentication object
 import { auth } from "/src/firebaseConfig.js";
-
-// Import specific functions from the Firebase Auth SDK
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -18,37 +13,73 @@ import {
   signOut,
 } from "firebase/auth";
 
-// -------------------------------------------------------------
-// loginUser(email, password)
-// -------------------------------------------------------------
-// Logs an existing user into Firebase Authentication.
-//
-// Parameters:
-//   email (string)    - user's email
-//   password (string) - user's password
-//
-// Returns: Promise resolving to the user credential object.
-// Usage:
-//   await loginUser("user@example.com", "password123");
-// -------------------------------------------------------------
-export async function loginUser(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+
+const db = getFirestore(); // Firestore instance
+
+// --- Generate a random 8-digit numeric code
+function generate8DigitCode() {
+  return Math.floor(10000000 + Math.random() * 90000000);
+}
+
+// --- Ensure code is unique in Firestore
+async function generateUniqueUserID() {
+  let isUnique = false;
+  let newCode;
+  while (!isUnique) {
+    newCode = generate8DigitCode();
+    const q = query(collection(db, "userIDs"), where("userID", "==", newCode));
+    const snapshot = await getDocs(q);
+    if (snapshot.empty) isUnique = true;
+  }
+  return newCode;
 }
 
 // -------------------------------------------------------------
-// signupUser(name, email, password)
+// loginUser(email, password) with Firestore userID creation
 // -------------------------------------------------------------
-// Creates a new user account with Firebase Authentication,
-// then updates the user's profile with a display name.
-//
-// Parameters:
-//   name (string)     - user's display name
-//   email (string)    - user's email
-//   password (string) - user's password
-//
-// Returns: the created user object.
-// Usage:
-//   const user = await signupUser("Alice", "alice@email.com", "secret");
+export async function loginUser(email, password) {
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  const user = userCredential.user;
+
+  const userDocRef = doc(db, "userIDs", user.uid);
+  const userDocSnap = await getDoc(userDocRef);
+
+  if (!userDocSnap.exists()) {
+    const newUserID = await generateUniqueUserID();
+    await setDoc(userDocRef, {
+      userID: newUserID,
+      email: user.email,
+      createdAt: new Date(),
+    });
+    console.log(`✅ New userID created for ${user.email}: ${newUserID}`);
+  } else {
+    console.log(
+      `ℹ️ Existing userID for ${user.email}: ${userDocSnap.data().userID}`
+    );
+  }
+
+  // Wait a short moment to ensure Firestore write completes before redirect
+  await getDoc(userDocRef);
+
+  return userCredential;
+}
+
+// -------------------------------------------------------------
+// signupUser(name, email, password) with Firestore userID creation
 // -------------------------------------------------------------
 export async function signupUser(name, email, password) {
   const userCredential = await createUserWithEmailAndPassword(
@@ -56,18 +87,35 @@ export async function signupUser(name, email, password) {
     email,
     password
   );
-  await updateProfile(userCredential.user, { displayName: name });
-  return userCredential.user;
+  const user = userCredential.user;
+
+  await updateProfile(user, { displayName: name });
+
+  const userDocRef = doc(db, "userIDs", user.uid);
+  const userDocSnap = await getDoc(userDocRef);
+
+  if (!userDocSnap.exists()) {
+    const newUserID = await generateUniqueUserID();
+    await setDoc(userDocRef, {
+      userID: newUserID,
+      email: user.email,
+      createdAt: new Date(),
+    });
+    console.log(`✅ New userID created for ${user.email}: ${newUserID}`);
+  } else {
+    console.log(
+      `ℹ️ Existing userID for ${user.email}: ${userDocSnap.data().userID}`
+    );
+  }
+
+  // Wait a short moment to ensure Firestore write completes before redirect
+  await getDoc(userDocRef);
+
+  return user;
 }
 
 // -------------------------------------------------------------
 // logoutUser()
-// -------------------------------------------------------------
-// Signs out the currently logged-in user and redirects them
-// back to the login page (index.html).
-//
-// Usage:
-//   await logoutUser();
 // -------------------------------------------------------------
 export async function logoutUser() {
   await signOut(auth);
@@ -76,18 +124,6 @@ export async function logoutUser() {
 
 // -------------------------------------------------------------
 // checkAuthState()
-// -------------------------------------------------------------
-// Observes changes in the user's authentication state (login/logout)
-// and updates the UI or redirects accordingly.
-//
-// If the user is on "main.html":
-//   - If logged in → displays "Hello, [Name]!"
-//   - If not logged in → redirects to "index.html"
-//
-// This function should be called once when the page loads.
-//
-// Usage:
-//   checkAuthState();
 // -------------------------------------------------------------
 export function checkAuthState() {
   onAuthStateChanged(auth, (user) => {
@@ -105,9 +141,6 @@ export function checkAuthState() {
 // -------------------------------------------------------------
 // onAuthReady(callback)
 // -------------------------------------------------------------
-// Wrapper for Firebase's onAuthStateChanged()
-// Runs the given callback(user) when Firebase resolves or changes auth state.
-// Useful for showing user info or redirecting after login/logout.
 export function onAuthReady(callback) {
   return onAuthStateChanged(auth, callback);
 }
@@ -115,11 +148,8 @@ export function onAuthReady(callback) {
 // -------------------------------------------------------------
 // authErrorMessage(error)
 // -------------------------------------------------------------
-// Maps Firebase Auth error codes to short, user-friendly messages.
-// Helps display clean error alerts instead of raw Firebase codes.
 export function authErrorMessage(error) {
   const code = (error?.code || "").toLowerCase();
-
   const map = {
     "auth/invalid-credential": "Wrong email or password.",
     "auth/invalid-email": "Please enter a valid email address.",
@@ -131,6 +161,5 @@ export function authErrorMessage(error) {
     "auth/missing-password": "Password cannot be empty.",
     "auth/network-request-failed": "Network error. Try again.",
   };
-
   return map[code] || "Something went wrong. Please try again.";
 }

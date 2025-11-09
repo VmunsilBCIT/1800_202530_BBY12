@@ -31,21 +31,25 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <div class="container">
-      <!-- Friend List Button -->
-      <div class="button" id="friend-list-btn">
-        <img src="./images/list.png" alt="Friend List Icon" class="icon" />
-        <span class="label">Friend List</span>
+      <h2 id="welcome">Add a Friend</h2>
+
+      <div class="search-container">
+        <label id="search-label" for="search-input">Enter User ID:</label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Enter a friend's userID"
+        />
+        <button id="search-button">Search</button>
+
+        <div id="result-container" style="display: none">
+          <p id="result-text"></p>
+        </div>
       </div>
 
-      <!-- Add Friend Button -->
-      <div class="button" id="add-friend-btn">
-        <img src="./images/addfriend.png" alt="Add Friend Icon" class="icon" />
-        <span class="label">Add Friend</span>
-      </div>
-
-      <!-- Display current user ID -->
-      <div class="user-id-display" id="user-id-display">
-        UserID: <span id="userID">Loading...</span>
+      <div class="button" id="back-btn">
+        <img src="./images/icon-back.png" alt="Add Friend Icon" class="icon" />
+        <span class="label">Back</span>
       </div>
     </div>
 
@@ -57,6 +61,6 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <script type="module" src="./src/friendmain.js"></script>
+    <script type="module" src="./src/search.js"></script>
   </body>
 </html>
