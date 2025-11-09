@@ -1,4 +1,3 @@
-// search.js
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "/src/firebaseConfig.js";
 
@@ -48,14 +47,14 @@ searchButton.addEventListener("click", async () => {
     if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        showResult(`✅ Found user: ${data.email}`);
+        showResult(`Found user: ${data.email}`);
       });
     } else {
-      showResult("❌ No user found with that ID.", true);
+      showResult("No user found with that ID.", true);
     }
   } catch (error) {
     console.error("Error searching for user:", error);
-    showResult("⚠️ Error searching for user.", true);
+    showResult("Error searching for user.", true);
   }
 });
 

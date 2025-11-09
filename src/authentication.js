@@ -65,10 +65,10 @@ export async function loginUser(email, password) {
       email: user.email,
       createdAt: new Date(),
     });
-    console.log(`✅ New userID created for ${user.email}: ${newUserID}`);
+    console.log(`New userID created for ${user.email}: ${newUserID}`);
   } else {
     console.log(
-      `ℹ️ Existing userID for ${user.email}: ${userDocSnap.data().userID}`
+      `Existing userID for ${user.email}: ${userDocSnap.data().userID}`
     );
   }
 
@@ -101,10 +101,10 @@ export async function signupUser(name, email, password) {
       email: user.email,
       createdAt: new Date(),
     });
-    console.log(`✅ New userID created for ${user.email}: ${newUserID}`);
+    console.log(`New userID created for ${user.email}: ${newUserID}`);
   } else {
     console.log(
-      `ℹ️ Existing userID for ${user.email}: ${userDocSnap.data().userID}`
+      `Existing userID for ${user.email}: ${userDocSnap.data().userID}`
     );
   }
 
