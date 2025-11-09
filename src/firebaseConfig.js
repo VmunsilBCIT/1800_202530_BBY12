@@ -1,4 +1,3 @@
-// src/firebaseAPIConfig.js
 // -------------------------------------------------------------
 // Part of the COMP1800 Project 1 Course (BCIT).
 // Starter code provided for students to use and adapt.
@@ -22,7 +21,7 @@ import { getFirestore } from "firebase/firestore";
 // VITE_FIREBASE_PROJECT_ID=your-project-id
 // VITE_FIREBASE_APP_ID=your-app-id
 //
-// ⚠️ Note: Vite only exposes environment variables that start with "VITE_"
+// Note: Vite only exposes environment variables that start with "VITE_"
 // ---------------------------------------------------------
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
