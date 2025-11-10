@@ -20,7 +20,15 @@ class SiteNavbar extends HTMLElement {
           width="100"
           height="100"
         />
-        <span id="mapway">WaySync</span>
+        <span id="mapway">WaySync 
+        <img
+          id="logo"
+          src="images/WaySync Logo.png"
+          alt="WaySync Logo"
+          width="100"
+          height="100"
+        />
+        </span>
         <img
           id="account"
           src="images/icon-account.PNG"

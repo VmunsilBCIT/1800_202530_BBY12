@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { onAuthReady } from "./authentication.js";
 import { getAuth, updateProfile } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
+
 
 const auth = getAuth();
 const db = getFirestore();
@@ -107,6 +108,69 @@ function enableInlineBioEdit(user, bioElement) {
   });
 }
 
+
+// --- Load bio when page loads ---
+async function displayBio(id) {
+  try {
+    const bioRef = doc(db, "bio", id);
+    const bioSnap = await getDoc(bioRef);
+
+    if (bioSnap.exists()) {
+      const bioData = bioSnap.data();
+      document.getElementById("description").value = bioData.description || "";
+    } else {
+      console.log("No such bio found!");
+    }
+  } catch (error) {
+    console.error("Error getting bio document:", error);
+  }
+}
+
+// --- Write a new bio ---
+async function writeBio() {
+  console.log("Inside writeBio");
+
+  const bioDescription = document.getElementById("description").value.trim();
+  if (!bioDescription) {
+    alert("Bio cannot be empty!");
+    return;
+  }
+
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      const docRef = await addDoc(collection(db, "bio"), {
+        userID: user.uid,
+        description: bioDescription,
+        updatedAt: new Date(),
+      });
+
+      // save for future reload
+      localStorage.setItem("bioDocID", docRef.id);
+
+      alert("Bio saved!");
+      window.location.reload(); // reload to show updated bio
+
+    } catch (error) {
+      console.error("Error adding bio:", error);
+      alert("Failed to save bio.");
+    }
+  } else {
+    console.log("No user signed in");
+  }
+}
+
+// --- Attach event listener ---
+document.getElementById('submitBtn').addEventListener('click', writeBio);
+
+// --- Load bio if it exists ---
+const bioDocID = localStorage.getItem('bioDocID');
+if (bioDocID) {
+  displayBio(bioDocID);
+}
+
 showUserProfile();
+
+
 
 
