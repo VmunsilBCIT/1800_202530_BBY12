@@ -1,34 +1,24 @@
 class SiteFooter extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-            <!-- Footer: single source of truth -->
-            <footer>
-        <div class="navigation">
-          <img
-            id="back"
-            src="images/icon-back.PNG"
-            alt="Back"
-            width="100"
-            height="100"
-          />
+         <footer>
+    <div class="footer-nav">
 
-          <img
-            id="home"
-            src="images/icon-home.PNG"
-            alt="Home"
-            width="100"
-            height="100"
-          />
+      <div class="footer-left">
+        <img id="back" class="footer-icon" src="images/icon-back.PNG" alt="Back" />
+      </div>
 
-          <img
-            id="friends"
-            src="images/icon-friends.PNG"
-            alt="Friends"
-            width="100"
-            height="100"
-          />
-        </div></footer>
-        `; 
+      <div class="footer-center">
+        <img id="home" class="footer-icon" src="images/icon-home.PNG" alt="Home" />
+      </div>
+
+      <div class="footer-right">
+        <img id="friends" class="footer-icon" src="images/icon-friends.PNG" alt="Friends" />
+      </div>
+
+    </div>
+  </footer>
+`;
         const friendsImg = this.querySelector("#friends");
         if (friendsImg) {
           friendsImg.addEventListener("click", () => {

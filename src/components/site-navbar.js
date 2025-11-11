@@ -12,6 +12,7 @@ class SiteNavbar extends HTMLElement {
 
   renderNavbar() {
     this.innerHTML = `
+
       <!-- Navbar: single source of truth -->
       <div class="navigation">
         <img
@@ -46,8 +47,8 @@ class SiteNavbar extends HTMLElement {
       accountImg.addEventListener("click", () => {
         window.location.href = "/profile.html";
       });
-    } 
-    
+    }
+
     const settingImg = this.querySelector("#setting");
     if (settingImg) {
       settingImg.addEventListener("click", () => {
@@ -70,9 +71,6 @@ class SiteNavbar extends HTMLElement {
   }
 
   }
-
-    
-  
 
   renderAuthControls() {
     const authControls = this.querySelector("#authControls");

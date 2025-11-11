@@ -27,16 +27,12 @@
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
-    
-
-
 
     <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
 
-
-<div class="container-fluid py-5" id="profile-layout">
-  <div class="row justify-content-center align-items-center vh-100">
+    <!-- <div class="container-fluid py-5" id="profile-layout">
+    <div class="row justify-content-center align-items-center vh-100">
     
     <div class="col-md-4 text-center mb-4 mb-md-0" id="leftside">
       
@@ -72,10 +68,43 @@
 
       </div>
     </div>
-  </div>
-</div>
+    </div>
+    </div> -->
 
+    <div id="profile-page">
+      <div class="profile-container">
+        <div class="profile-left">
+          <img
+            src="images/icon-account.PNG"
+            id="output"
+            class="profile-avatar"
+          />
 
+          <input type="file" id="file" />
+
+          <h5 id="username-display" data-tooltip="Click to edit">Loading...</h5>
+        </div>
+
+        <div class="profile-right">
+          <h3 class="profile-title">Profile Info</h3>
+
+          <div class="profile-info-card">
+            <p>
+              <strong>Username:</strong>
+              <span id="name-goes-here">Loading...</span>
+            </p>
+            <p>
+              <strong>Email:</strong>
+              <span id="email-goes-here">Loading...</span>
+            </p>
+            <p>
+              <strong>Bio:</strong>
+              <span id="bio-goes-here">Click to edit</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- our own footer goes here -->
     <site-footer></site-footer>
