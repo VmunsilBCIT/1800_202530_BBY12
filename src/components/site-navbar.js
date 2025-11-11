@@ -12,67 +12,62 @@ class SiteNavbar extends HTMLElement {
 
   renderNavbar() {
     this.innerHTML = `
-      <!-- Navbar: single source of truth -->
-      <div class="navigation">
-        <img
-          id="setting"
-          src="images/icon-settings.PNG"
-          alt="Settings"
-          width="100"
-          height="100"
-        />
-        <span id="mapway">WaySync 
-        <img
-          id="logo"
-          src="images/WaySync Logo.png"
-          alt="WaySync Logo"
-          width="100"
-          height="100"
-        />
-        </span>
-        <img
-          id="account"
-          src="images/icon-account.PNG"
-          alt="Account"
-          width="100"
-          height="100"
-        />
-        <div id="authControls" style="display: inline-block; margin-left: 20px;"></div>
+      <div class="navbar">
+        <div class="nav-left">
+          <img
+            id="setting"
+            class="nav-icon"
+            src="images/icon-settings.PNG"
+            alt="Settings"
+          />
+        </div>
+
+        <div class="nav-center">
+          <span id="mapway" class="nav-title">WaySync</span>
+          <img
+            id="logo"
+            class="nav-logo"
+            src="images/WaySync Logo.png"
+            alt="WaySync Logo"
+          />
+        </div>
+
+        <div class="nav-right">
+          <img
+            id="account"
+            class="nav-icon"
+            src="images/icon-account.PNG"
+            alt="Account"
+          />
+          <div id="authControls" class="nav-auth"></div>
+        </div>
       </div>
     `;
 
+    // ✅ Account button
     const accountImg = this.querySelector("#account");
     if (accountImg) {
       accountImg.addEventListener("click", () => {
         window.location.href = "/profile.html";
       });
-    } 
-    
+    }
+
+    // ✅ Setting button（修复重复定义）
     const settingImg = this.querySelector("#setting");
     if (settingImg) {
       settingImg.addEventListener("click", () => {
-        window.location.href = "/settings.html";
+        window.location.href = "/settings.html"; // ✅ 请确保文件名一致
       });
     }
 
+    // ✅ Logo click → 回到主地图
     const waySyncSpan = this.querySelector("#mapway");
     if (waySyncSpan) {
       waySyncSpan.addEventListener("click", () => {
         window.location.href = "/main-map.html";
       });
     }
-
-    const settingImg = this.querySelector("#setting");
-    if (settingImg) {
-      settingImg.addEventListener("click", () => {
-      window.location.href = "/setting.html";
-    });
   }
-
-  }
-
-    
-  
 
   renderAuthControls() {
     const authControls = this.querySelector("#authControls");
@@ -81,7 +76,6 @@ class SiteNavbar extends HTMLElement {
       return;
     }
 
-    // Clear any existing content
     authControls.innerHTML = "";
 
     onAuthStateChanged(auth, (user) => {
@@ -90,7 +84,6 @@ class SiteNavbar extends HTMLElement {
           <a class="btn btn-outline-light" id="loginBtn" href="/login.html" style="min-width: 80px;">Log in</a>
         `;
       } else {
-        // Authenticated users see no button
         authControls.innerHTML = "";
       }
     });
