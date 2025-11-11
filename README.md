@@ -58,7 +58,7 @@ WaySync/
 
 - **Tommy White** - BCIT CST Student, has been learning code for around 3 years. Currently familiar with C#, Java, and a bit of C++. I also like playing video games in my free time alone or with friends
   - **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
-  - **YPerry Jiang** - BCIT CST Student, PJ, a group member of the group BBY12。
+  - **Perry Jiang** - BCIT CST Student, PJ, a group member of the group BBY12。
   - **Edward Liang** - BCIT CST Student. My personality is pretty easygoing, though I might be a bit shy sometimes because of the language barrier
 
 ---
