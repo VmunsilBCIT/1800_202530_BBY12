@@ -1,4 +1,5 @@
 // Import specific functions from the Firebase Auth SDK
+// @ts-nocheck
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "/src/firebaseConfig.js";
 
@@ -38,6 +39,14 @@ class SiteNavbar extends HTMLElement {
         window.location.href = "/profile.html";
       });
     }
+
+    const settingImg = this.querySelector("#setting");
+    if (settingImg) {
+      settingImg.addEventListener("click", () => {
+      window.location.href = "/setting.html";
+    });
+  }
+
   }
 
   renderAuthControls() {
