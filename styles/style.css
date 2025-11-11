@@ -188,6 +188,12 @@ site-navbar .navbar {
   position: relative !important;
 }
 
+.nav-logo {
+  width: 42px;     
+  height: 42px;
+  object-fit: contain;
+  margin-left: 8px;  
+}
 
 .navbar {
   position: fixed ！important;      
