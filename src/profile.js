@@ -2,15 +2,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { onAuthReady } from "./authentication.js";
 import { getAuth, updateProfile } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
-
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  addDoc,
+  collection,
+} from "firebase/firestore";
 
 const auth = getAuth();
 const db = getFirestore();
 
 function showUserProfile() {
   const nameElement = document.getElementById("name-goes-here");
-  const emailElement = document.getElementById("email-goes-here"); 
+  const emailElement = document.getElementById("email-goes-here");
   const usernameDisplay = document.getElementById("username-display");
   const bioElement = document.getElementById("bio-goes-here");
 
@@ -65,11 +71,13 @@ function enableInlineUsernameEdit(user, usernameDisplay, nameElement) {
     };
 
     input.addEventListener("blur", save);
-    input.addEventListener("keydown", (e) => { if (e.key === "Enter") save(); });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") save();
+    });
   });
 }
 
-document.getElementById("file").addEventListener("change", function(event) {
+document.getElementById("file").addEventListener("change", function (event) {
   const file = event.target.files[0];
   if (!file) return;
 
@@ -99,15 +107,15 @@ function enableInlineBioEdit(user, bioElement) {
     };
 
     input.addEventListener("blur", save);
-    input.addEventListener("keydown", (e) => { 
-      if (e.key === "Enter" && !e.shiftKey) { // Enter saves, Shift+Enter for new line
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        // Enter saves, Shift+Enter for new line
         e.preventDefault();
         save();
       }
     });
   });
 }
-
 
 // --- Load bio when page loads ---
 async function displayBio(id) {
@@ -150,7 +158,6 @@ async function writeBio() {
 
       alert("Bio saved!");
       window.location.reload(); // reload to show updated bio
-
     } catch (error) {
       console.error("Error adding bio:", error);
       alert("Failed to save bio.");
@@ -161,16 +168,12 @@ async function writeBio() {
 }
 
 // --- Attach event listener ---
-document.getElementById('submitBtn').addEventListener('click', writeBio);
+document.getElementById("submitBtn").addEventListener("click", writeBio);
 
 // --- Load bio if it exists ---
-const bioDocID = localStorage.getItem('bioDocID');
+const bioDocID = localStorage.getItem("bioDocID");
 if (bioDocID) {
   displayBio(bioDocID);
 }
 
 showUserProfile();
-
-
-
-
