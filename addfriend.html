@@ -4,46 +4,36 @@
     <title>WaySync</title>
     <meta name="comp1800 BBY-12 WaySync" content="WaySync 1800 App" />
 
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Web Components for shared navbar and footer layout -->
     <script type="module" src="/src/components/site-navbar.js"></script>
     <script type="module" src="/src/components/site-footer.js"></script>
 
-    <!-- Other libraries go here -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
   <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-
-    <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
 
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-    <br />
-    <br />
+    <br /><br />
+
     <div class="container">
-      <br />
-      <br />
-      <h2 id="welcome">Add a Friend</h2>
+      <h2>Add a Friend</h2>
 
       <div class="search-container">
-        <label id="search-label" for="search-input">Enter User ID:</label>
+        <label for="search-input">Enter User ID:</label>
+
         <input
           type="text"
           id="search-input"
           placeholder="Enter a friend's userID"
         />
+
         <button id="search-button">Search</button>
 
         <div id="result-container" style="display: none">
@@ -51,20 +41,22 @@
         </div>
       </div>
 
+      <button
+        id="confirmAddFriend"
+        class="btn btn-success"
+        style="display: none"
+      >
+        Add Friend
+      </button>
+
       <div class="button" id="back-btn">
-        <img src="./images/icon-back.png" alt="Add Friend Icon" class="icon" />
+        <img src="./images/icon-back.png" class="icon" />
         <span class="label">Back</span>
       </div>
     </div>
 
-    <!-- our own footer goes here -->
     <site-footer></site-footer>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
     <script type="module" src="./src/search.js"></script>
   </body>
 </html>

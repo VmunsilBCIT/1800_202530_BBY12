@@ -647,3 +647,55 @@ footer {
     font-size: 14px;
   }
 }
+
+/* ===============================
+   Friend List – Card Styling
+================================= */
+.friend-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px auto;
+  max-width: 360px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.friend-card img.friend-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.friend-info {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.friend-info strong {
+  color: #444;
+}
+
+.friend-button {
+  margin-top: 12px;
+  padding: 8px 20px;
+  background-color: #007bff;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.friend-button:hover {
+  background-color: #0056c1;
+}
+
+
+#friend-list-container {
+  position: relative;
+  z-index: 5;
+  margin-top: 20px;
+}
