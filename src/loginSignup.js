@@ -85,6 +85,7 @@ function initAuthUI() {
     setSubmitDisabled(loginForm, true);
     try {
       await loginUser(email, password);
+      localStorage.setItem("loggedIn", "true");
       location.href = redirectUrl;
     } catch (err) {
       showError(authErrorMessage(err));
@@ -108,6 +109,7 @@ function initAuthUI() {
     setSubmitDisabled(signupForm, true);
     try {
       await signupUser(name, email, password);
+      localStorage.setItem("loggedIn", "true");
       location.href = redirectUrl;
     } catch (err) {
       showError(authErrorMessage(err));

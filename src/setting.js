@@ -11,7 +11,7 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   signOut(auth)
     .then(() => {
       console.log("User signed out successfully.");
-      window.location.href = "/login.html"; // 跳转到登录页
+      window.location.href = "/login.html";
     })
     .catch((error) => {
       console.error("Error signing out:", error);
