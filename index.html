@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>WaySync</title>
+    <link rel="icon" href="./images/favicon.png" />
     <meta name="comp1800 template" content="My 1800 App" />
 
     <!-- Required meta tags -->
@@ -19,14 +19,13 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
 
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
-
-  <!-- our own navbar goes here -->
-
-  <!-- Main content goes here -->
   <body>
+    <script>
+      if (localStorage.getItem("loggedIn") === "true") {
+        window.location.href = "main.html";
+      }
+    </script>
+
     <div class="landing-container">
       <div class="overlay"></div>
       <div class="landing-content">
@@ -42,11 +41,6 @@
       </div>
     </div>
 
-    <!-- our own footer goes here -->
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript scripts go here      -->
-    <!---------------------------------------------->
     <script type="module" src="/src/app.js"></script>
   </body>
 </html>
