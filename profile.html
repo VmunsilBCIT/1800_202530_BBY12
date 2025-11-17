@@ -50,23 +50,17 @@
             <p>
               <strong>Username:</strong>
               <span id="name-goes-here"></span>
+              <span id="username-display" style="display:none;"></span>
             </p>
             <p>
               <strong>Email:</strong>
               <span id="email-goes-here"> </span>
             </p>
-            <p>
-              <span id="bio-goes-here"
-                ><div class="form-group" id="bio">
-                  <label for="exampleFormControlTextarea1"
-                    ><strong>Bio:</strong></label
-                  >
-                  <textarea
-                    class="form-control"
-                    id="description"
-                    rows="3"
-                  ></textarea></div
-              ></span>
+           <p>
+              <div class="form-group" id="bio">
+                <label><strong>Bio:</strong></label>
+                <textarea class="form-control" id="description" rows="3"></textarea>
+              </div>
             </p>
             <button
               type="button"
@@ -74,6 +68,13 @@
               id="submitBtn"
             >
               Submit
+            </button>
+            <button
+              type="button" 
+              id="logoutBtn" 
+              class="btn btn-lg btn-primary pull-right"
+              >
+              Log Out
             </button>
           </div>
         </div>

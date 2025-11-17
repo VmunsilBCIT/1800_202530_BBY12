@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { onAuthReady } from "./authentication.js";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile, signOut } from "firebase/auth";
 import {
   getFirestore,
   doc,
@@ -18,7 +18,6 @@ function showUserProfile() {
   const nameElement = document.getElementById("name-goes-here");
   const emailElement = document.getElementById("email-goes-here");
   const usernameDisplay = document.getElementById("username-display");
-  const bioElement = document.getElementById("bio-goes-here");
 
   onAuthReady((user) => {
     if (!user) {
@@ -33,10 +32,8 @@ function showUserProfile() {
     nameElement.textContent = name;
     emailElement.textContent = email;
     usernameDisplay.textContent = name;
-    bioElement.textContent = bio;
 
     enableInlineUsernameEdit(user, usernameDisplay, nameElement);
-    enableInlineBioEdit(user, bioElement); // new
   });
 }
 
@@ -118,21 +115,27 @@ function enableInlineBioEdit(user, bioElement) {
 }
 
 // --- Load bio when page loads ---
-async function displayBio(id) {
+async function displayBio() {
+  const user = auth.currentUser;
+  if (!user) return;
+
   try {
-    const bioRef = doc(db, "bio", id);
+    const bioRef = doc(db, "bio", user.uid);
     const bioSnap = await getDoc(bioRef);
 
     if (bioSnap.exists()) {
-      const bioData = bioSnap.data();
-      document.getElementById("description").value = bioData.description || "";
+      const data = bioSnap.data();
+      document.getElementById("description").value =
+        data.description || "";
     } else {
-      console.log("No such bio found!");
+      console.log("No bio found for this user.");
     }
+
   } catch (error) {
-    console.error("Error getting bio document:", error);
+    console.error("Error loading bio:", error);
   }
 }
+
 
 // --- Write a new bio ---
 async function writeBio() {
@@ -145,35 +148,56 @@ async function writeBio() {
   }
 
   const user = auth.currentUser;
-  if (user) {
-    try {
-      const docRef = await addDoc(collection(db, "bio"), {
+  if (!user) {
+    console.log("No user signed in");
+    return;
+  }
+
+  try {
+    // Overwrite bio using the user's UID as the document ID
+    await setDoc(
+      doc(db, "bio", user.uid),
+      {
         userID: user.uid,
         description: bioDescription,
         updatedAt: new Date(),
-      });
+      },
+      { merge: false } // overwrite old one completely
+    );
 
-      // save for future reload
-      localStorage.setItem("bioDocID", docRef.id);
+    alert("Bio saved!");
+    window.location.reload();
 
-      alert("Bio saved!");
-      window.location.reload(); // reload to show updated bio
-    } catch (error) {
-      console.error("Error adding bio:", error);
-      alert("Failed to save bio.");
-    }
-  } else {
-    console.log("No user signed in");
+  } catch (error) {
+    console.error("Error saving bio:", error);
+    alert("Failed to save bio.");
   }
 }
+
 
 // --- Attach event listener ---
 document.getElementById("submitBtn").addEventListener("click", writeBio);
 
 // --- Load bio if it exists ---
-const bioDocID = localStorage.getItem("bioDocID");
-if (bioDocID) {
-  displayBio(bioDocID);
-}
+onAuthReady((user) => {
+  if (user) {
+    displayBio();
+  } else {
+    location.href = "index.html";
+  }
+});
+
+
+// Logout button
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      console.log("User signed out successfully.");
+      window.location.href = "/login.html";
+    })
+    .catch((error) => {
+      console.error("Error signing out:", error);
+    });
+});
 
 showUserProfile();
