@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Friend List</title>
+
+    <!-- Shared navbar + footer -->
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+
+  <body>
+    <site-navbar></site-navbar>
+
+    <div class="container mt-4">
+      <h2 class="text-center">Friend List</h2>
+
+      <div id="friend-list-container" class="mt-4"></div>
+
+      <div class="mt-4 text-center">
+        <a href="friends.html">
+          <button class="btn btn-secondary">Back</button>
+        </a>
+      </div>
+    </div>
+
+    <site-footer></site-footer>
+
+    <!-- Load logic -->
+    <script type="module" src="./src/friendlist.js"></script>
+  </body>
+</html>
