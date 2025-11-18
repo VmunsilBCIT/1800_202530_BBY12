@@ -8,12 +8,13 @@ document.getElementById("backBtn").addEventListener("click", () => {
 
 // Logout button
 document.getElementById("logoutBtn").addEventListener("click", () => {
-  signOut(auth)
-    .then(() => {
-      console.log("User signed out successfully.");
-      window.location.href = "/login.html";
-    })
-    .catch((error) => {
-      console.error("Error signing out:", error);
-    });
+  try {
+    signOut(auth)
+        localStorage.removeItem("loggedIn");
+        console.log("User signed out successfully.");
+        window.location.href = "/login.html";
+      }
+  catch(error) {
+    console.error("Error signing out:", error);
+  };
 });
