@@ -1,64 +1,96 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { db } from "/src/firebaseConfig.js";
+import { getAuth } from "firebase/auth";
 
-// DOM elements
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search-input");
 const resultContainer = document.getElementById("result-container");
 const resultText = document.getElementById("result-text");
 const backBtn = document.getElementById("back-btn");
 
-function showResult(message, isError = false) {
+function showResult(html) {
   resultContainer.style.display = "block";
-  resultText.textContent = message;
-  resultText.style.color = isError ? "red" : "green";
+  resultText.innerHTML = html;
+  resultText.style.color = "black";
 }
 
 searchButton.addEventListener("click", async () => {
   let userID = searchInput.value.trim();
-  console.log("User typed:", `"${userID}"`);
 
-  // Convert to number
   userID = Number(userID);
   if (isNaN(userID)) {
-    showResult("⚠️ Please enter a valid numeric User ID.", true);
+    showResult(
+      `<span style="color:red">Please enter a valid numeric User ID.</span>`
+    );
     return;
   }
 
   try {
     const usersRef = collection(db, "userIDs");
-
-    // DEBUG: Print all documents
-    console.log("All documents in userIDs collection:");
-    const allDocs = await getDocs(usersRef);
-    allDocs.forEach((doc) =>
-      console.log("Doc ID:", doc.id, "Data:", doc.data())
-    );
-
-    // Query by numeric userID
     const q = query(usersRef, where("userID", "==", userID));
     const querySnapshot = await getDocs(q);
 
-    console.log("Query results for userID:", userID);
-    querySnapshot.forEach((doc) =>
-      console.log("Matched doc ID:", doc.id, "Data:", doc.data())
-    );
-
-    if (!querySnapshot.empty) {
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        showResult(`Found user: ${data.email}`);
-      });
-    } else {
-      showResult("No user found with that ID.", true);
+    if (querySnapshot.empty) {
+      showResult(`<span style="color:red">No user found with that ID.</span>`);
+      return;
     }
+
+    querySnapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+
+      showResult(`
+        <div>
+          <p>Found user: <strong>${data.email}</strong></p>
+          <button id="add-friend-btn" style="margin-top:10px; padding:8px 16px;">
+            Add Friend
+          </button>
+        </div>
+      `);
+
+      document.getElementById("add-friend-btn").onclick = () =>
+        addFriend(docSnap.id, data.email);
+    });
   } catch (error) {
-    console.error("Error searching for user:", error);
-    showResult("Error searching for user.", true);
+    console.error(error);
+    showResult(`<span style="color:red">Error searching for user.</span>`);
   }
 });
 
-// Add Friend button — navigates to addfriends.html
-document.getElementById("back-btn").addEventListener("click", () => {
+async function addFriend(friendUID, friendEmail) {
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+
+  if (!currentUser) {
+    showResult(`<span style="color:red">You must be logged in.</span>`);
+    return;
+  }
+
+  try {
+    const myDocRef = doc(db, "userIDs", currentUser.uid);
+
+    await updateDoc(myDocRef, {
+      friends: arrayUnion(friendUID),
+    });
+
+    showResult(`
+      <p style="color:green;">
+        Successfully added <strong>${friendEmail}</strong> as a friend!
+      </p>
+    `);
+  } catch (err) {
+    console.error(err);
+    showResult(`<span style="color:red">Error adding friend.</span>`);
+  }
+}
+
+backBtn.addEventListener("click", () => {
   window.location.href = "/friends.html";
 });
