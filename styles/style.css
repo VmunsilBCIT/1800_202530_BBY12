@@ -19,11 +19,11 @@ body {
 }
 
 /* ===============================
-   Profile Page Background
+   Profile Page
    =============================== */
 #profile {
   background: #f2f6fc;
-  min-height: calc(100vh - 72px - 76px); /* 扣掉 navbar & footer */
+  min-height: calc(100vh - 72px - 76px); /* navbar & footer */
 
   padding-top: 100px;
   padding-bottom: 0px;
@@ -43,7 +43,7 @@ body {
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   padding: 40px 60px;
   gap: 200px;
@@ -57,6 +57,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.profile-img {
+  width: 150px;         /* set any size you want */
+  height: 150px;
+  border-radius: 50%;   /* makes it a circle */
+  object-fit: cover;    /* auto-crops image to fill the circle */
+  object-position: center; /* center the crop */
 }
 
 .profile-avatar {
@@ -107,6 +115,10 @@ body {
 .profile-info-card strong {
   width: 90px;
   display: inline-block;
+}
+
+#description {
+  resize: none;
 }
 
 /* ===============================

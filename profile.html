@@ -35,13 +35,10 @@
     <div id="profile-page">
       <div class="profile-container">
         <div class="profile-left">
-          <div class="profile-pic">
-            <img src="images/icon-account.PNG" id="output" width="160" />
-            <label class="-label" for="file">
-              <span class="glyphicon glyphicon-camera"></span>
-            </label>
-            <input id="file" type="file" />
-          </div>
+            <img id="profileImage" class="profile-img" src="/images/icon-account.PNG" alt="Profile Picture" width="150" height="150">
+            <br>
+            <input type="file" id="inputImage" accept="image/*">
+            <strong><span id="username-display"></span></strong>
         </div>
 
         <div class="profile-right">
@@ -51,7 +48,7 @@
             <p>
               <strong>Username:</strong>
               <span id="name-goes-here"></span>
-              <span id="username-display" style="display:none;"></span>
+              
             </p>
             <p>
               <strong>Email:</strong>
@@ -68,7 +65,7 @@
               class="btn btn-lg btn-primary pull-right"
               id="submitBtn"
             >
-              Submit
+              Save Bio
             </button>
             <button
               type="button" 
