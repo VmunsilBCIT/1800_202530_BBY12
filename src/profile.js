@@ -1,24 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { onAuthReady } from "./authentication.js";
-import { getAuth, updateProfile } from "firebase/auth";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  addDoc,
-  collection,
-} from "firebase/firestore";
+import { getAuth, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const auth = getAuth();
 const db = getFirestore();
 
+/* ---------------------------------------------------------
+   Show user profile info
+--------------------------------------------------------- */
 function showUserProfile() {
   const nameElement = document.getElementById("name-goes-here");
   const emailElement = document.getElementById("email-goes-here");
   const usernameDisplay = document.getElementById("username-display");
-  const bioElement = document.getElementById("bio-goes-here");
 
   onAuthReady((user) => {
     if (!user) {
@@ -27,19 +22,19 @@ function showUserProfile() {
     }
 
     const name = user.displayName || "Your Username";
-    const email = user.email || "email@gmail.ca";
-    const bio = user.bio || "Click to edit";
+    const email = user.email || "email@example.com";
 
     nameElement.textContent = name;
     emailElement.textContent = email;
     usernameDisplay.textContent = name;
-    bioElement.textContent = bio;
 
     enableInlineUsernameEdit(user, usernameDisplay, nameElement);
-    enableInlineBioEdit(user, bioElement); // new
   });
 }
 
+/* ---------------------------------------------------------
+   Allow username inline editing
+--------------------------------------------------------- */
 function enableInlineUsernameEdit(user, usernameDisplay, nameElement) {
   usernameDisplay.addEventListener("click", () => {
     const input = document.createElement("input");
@@ -77,67 +72,94 @@ function enableInlineUsernameEdit(user, usernameDisplay, nameElement) {
   });
 }
 
-document.getElementById("file").addEventListener("change", function (event) {
-  const file = event.target.files[0];
-  if (!file) return;
+/* ---------------------------------------------------------
+   Image Upload (Fixed!)
+   Stores FULL data URL — supports PNG/JPG/WEBP
+--------------------------------------------------------- */
+function uploadImage() {
+  document.getElementById("inputImage").addEventListener("change", handleFileSelect);
 
-  const image = document.getElementById("output");
-  const url = URL.createObjectURL(file);
-  image.src = url;
+  function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-  image.onload = () => URL.revokeObjectURL(url);
-});
+    const reader = new FileReader();
 
-// --- NEW: Inline bio editing ---
-function enableInlineBioEdit(user, bioElement) {
-  bioElement.addEventListener("click", () => {
-    const input = document.createElement("textarea");
-    input.value = bioElement.textContent;
-    input.className = "form-control";
-    input.rows = 3;
-    bioElement.replaceWith(input);
-    input.focus();
-
-    const save = () => {
-      const newBio = input.value.trim();
-      // You could also store bio in Firestore or Realtime DB
-      // For now we just update the page display
-      bioElement.textContent = newBio || "Click to edit";
-      input.replaceWith(bioElement);
+    reader.onload = function (e) {
+      const fullDataURL = e.target.result; // KEEP FULL URL
+      saveProfileImage(fullDataURL);
     };
 
-    input.addEventListener("blur", save);
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        // Enter saves, Shift+Enter for new line
-        e.preventDefault();
-        save();
-      }
-    });
-  });
-}
-
-// --- Load bio when page loads ---
-async function displayBio(id) {
-  try {
-    const bioRef = doc(db, "bio", id);
-    const bioSnap = await getDoc(bioRef);
-
-    if (bioSnap.exists()) {
-      const bioData = bioSnap.data();
-      document.getElementById("description").value = bioData.description || "";
-    } else {
-      console.log("No such bio found!");
-    }
-  } catch (error) {
-    console.error("Error getting bio document:", error);
+    reader.readAsDataURL(file);
   }
 }
 
-// --- Write a new bio ---
-async function writeBio() {
-  console.log("Inside writeBio");
+/* ---------------------------------------------------------
+   Save Base64 Data URL to Firestore
+--------------------------------------------------------- */
+async function saveProfileImage(fullDataURL) {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
 
+    const userDocRef = doc(db, "userIDs", user.uid);
+
+    try {
+      await setDoc(userDocRef, { profileImage: fullDataURL }, { merge: true });
+
+      console.log("✅ Profile image saved successfully!");
+      displayProfileImage(fullDataURL);
+    } catch (error) {
+      console.error("❌ Error saving profile image:", error);
+    }
+  });
+}
+
+/* ---------------------------------------------------------
+   Display image on profile page
+--------------------------------------------------------- */
+function displayProfileImage(fullDataURL) {
+  const imgElement = document.getElementById("profileImage");
+  if (imgElement) {
+    imgElement.src = fullDataURL; // FULL URL
+  }
+}
+
+/* ---------------------------------------------------------
+   Load profile image when opening page
+--------------------------------------------------------- */
+async function loadProfileImage() {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+
+    const userDocRef = doc(db, "userIDs", user.uid);
+    const snap = await getDoc(userDocRef);
+
+    if (snap.exists() && snap.data().profileImage) {
+      displayProfileImage(snap.data().profileImage);
+    }
+  });
+}
+
+/* ---------------------------------------------------------
+   BIO Editing / Saving
+--------------------------------------------------------- */
+async function displayBio() {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  try {
+    const bioRef = doc(db, "bio", user.uid);
+    const snap = await getDoc(bioRef);
+
+    if (snap.exists()) {
+      document.getElementById("description").value = snap.data().description || "";
+    }
+  } catch (err) {
+    console.error("Error loading bio:", err);
+  }
+}
+
+async function writeBio() {
   const bioDescription = document.getElementById("description").value.trim();
   if (!bioDescription) {
     alert("Bio cannot be empty!");
@@ -145,35 +167,42 @@ async function writeBio() {
   }
 
   const user = auth.currentUser;
-  if (user) {
-    try {
-      const docRef = await addDoc(collection(db, "bio"), {
-        userID: user.uid,
-        description: bioDescription,
-        updatedAt: new Date(),
-      });
+  if (!user) return;
 
-      // save for future reload
-      localStorage.setItem("bioDocID", docRef.id);
+  try {
+    await setDoc(
+      doc(db, "bio", user.uid),
+      { userID: user.uid, description: bioDescription, updatedAt: new Date() },
+      { merge: false }
+    );
 
-      alert("Bio saved!");
-      window.location.reload(); // reload to show updated bio
-    } catch (error) {
-      console.error("Error adding bio:", error);
-      alert("Failed to save bio.");
-    }
-  } else {
-    console.log("No user signed in");
+    alert("Bio saved!");
+    window.location.reload();
+  } catch (err) {
+    console.error("Error saving bio:", err);
+    alert("Failed to save bio.");
   }
 }
 
-// --- Attach event listener ---
+/* ---------------------------------------------------------
+   Event Listeners
+--------------------------------------------------------- */
 document.getElementById("submitBtn").addEventListener("click", writeBio);
 
-// --- Load bio if it exists ---
-const bioDocID = localStorage.getItem("bioDocID");
-if (bioDocID) {
-  displayBio(bioDocID);
-}
+onAuthReady((user) => {
+  if (user) displayBio();
+  else location.href = "index.html";
+});
 
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  signOut(auth).then(() => {
+    window.location.href = "/login.html";
+  });
+});
+
+/* ---------------------------------------------------------
+   Initialize Page
+--------------------------------------------------------- */
 showUserProfile();
+uploadImage();
+loadProfileImage();

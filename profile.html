@@ -35,13 +35,10 @@
     <div id="profile-page">
       <div class="profile-container">
         <div class="profile-left">
-          <div class="profile-pic">
-            <img src="images/icon-account.PNG" id="output" width="160" />
-            <label class="-label" for="file">
-              <span class="glyphicon glyphicon-camera"></span>
-            </label>
-            <input id="file" type="file" />
-          </div>
+            <img id="profileImage" class="profile-img" src="/images/icon-account.PNG" alt="Profile Picture" width="150" height="150">
+            <br>
+            <input type="file" id="inputImage" accept="image/*">
+            <strong><span id="username-display"></span></strong>
         </div>
 
         <div class="profile-right">
@@ -51,30 +48,31 @@
             <p>
               <strong>Username:</strong>
               <span id="name-goes-here"></span>
+              
             </p>
             <p>
               <strong>Email:</strong>
               <span id="email-goes-here"> </span>
             </p>
-            <p>
-              <span id="bio-goes-here"
-                ><div class="form-group" id="bio">
-                  <label for="exampleFormControlTextarea1"
-                    ><strong>Bio:</strong></label
-                  >
-                  <textarea
-                    class="form-control"
-                    id="description"
-                    rows="3"
-                  ></textarea></div
-              ></span>
+           <p>
+              <div class="form-group" id="bio">
+                <label><strong>Bio:</strong></label>
+                <textarea class="form-control" id="description" rows="3"></textarea>
+              </div>
             </p>
             <button
               type="button"
               class="btn btn-lg btn-primary pull-right"
               id="submitBtn"
             >
-              Submit
+              Save Bio
+            </button>
+            <button
+              type="button" 
+              id="logoutBtn" 
+              class="btn btn-lg btn-primary pull-right"
+              >
+              Log Out
             </button>
           </div>
         </div>

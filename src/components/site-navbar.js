@@ -44,7 +44,7 @@ class SiteNavbar extends HTMLElement {
       </div>
     `;
 
-    // ✅ Account button
+    //Account button
     const accountImg = this.querySelector("#account");
     if (accountImg) {
       accountImg.addEventListener("click", () => {
@@ -52,15 +52,15 @@ class SiteNavbar extends HTMLElement {
       });
     }
 
-    // ✅ Setting button（修复重复定义）
+    //Setting button
     const settingImg = this.querySelector("#setting");
     if (settingImg) {
       settingImg.addEventListener("click", () => {
-        window.location.href = "/settings.html"; // ✅ 请确保文件名一致
+        window.location.href = "/settings.html";
       });
     }
 
-    // ✅ Logo click → 回到主地图
+    //Logo click
     const waySyncSpan = this.querySelector("#mapway");
     if (waySyncSpan) {
       waySyncSpan.addEventListener("click", () => {
