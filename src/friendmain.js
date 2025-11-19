@@ -28,7 +28,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 document.getElementById("friend-list-btn").addEventListener("click", () => {
-  alert("Friend List clicked!");
+  window.location.href = "/friendlist.html";
 });
 
 // Add Friend button — navigates to addfriends.html
