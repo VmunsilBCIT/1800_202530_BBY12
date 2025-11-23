@@ -23,13 +23,15 @@ class SiteNavbar extends HTMLElement {
         </div>
 
         <div class="nav-center">
-          <span id="mapway" class="nav-title">WaySync</span>
+          <span id="mapway" class="nav-title">WaySync
           <img
             id="logo"
             class="nav-logo"
             src="images/WaySync Logo.png"
             alt="WaySync Logo"
           />
+          </span>
+          
         </div>
 
         <div class="nav-right">

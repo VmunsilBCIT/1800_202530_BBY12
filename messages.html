@@ -31,37 +31,10 @@
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div class="container">
-      <!-- Add Friend Button -->
-      <div class="button" id="messages-btn">
-        <img src="./images/chat.png" alt="Messages Icon" class="icon" />
-        <span class="label">Messages</span>
-      </div>
 
-      <!-- Friend List Button -->
-      <div class="button" id="friend-list-btn">
-        <img src="./images/list.png" alt="Friend List Icon" class="icon" />
-        <span class="label">Friend List</span>
-      </div>
-
-      <!-- Add Friend Button -->
-      <div class="button" id="add-friend-btn">
-        <img src="./images/addfriend.png" alt="Add Friend Icon" class="icon" />
-        <span class="label">Add Friend</span>
-      </div>
-
-      <!-- Display current user ID -->
-      <div class="user-id-display" id="user-id-display">
-        UserID: <span id="userID">Loading...</span>
-      </div>
+    <div id="messages-container">
+      <div id="sender-tabs"></div>
+      <div id="messages-display"></div>
     </div>
 
     <!-- our own footer goes here -->
@@ -72,6 +45,7 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <script type="module" src="./src/friendmain.js"></script>
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/messages.js"></script>
   </body>
 </html>
