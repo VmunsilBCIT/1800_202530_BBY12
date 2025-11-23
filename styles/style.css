@@ -60,10 +60,10 @@ body {
 }
 
 .profile-img {
-  width: 150px;         /* set any size you want */
+  width: 150px; /* set any size you want */
   height: 150px;
-  border-radius: 50%;   /* makes it a circle */
-  object-fit: cover;    /* auto-crops image to fill the circle */
+  border-radius: 50%; /* makes it a circle */
+  object-fit: cover; /* auto-crops image to fill the circle */
   object-position: center; /* center the crop */
 }
 
@@ -669,7 +669,7 @@ footer {
   background: white;
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 400px;
   margin: auto;
@@ -686,3 +686,64 @@ footer {
   border: 3px solid #ddd;
 }
 
+#messages-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 120px auto 40px; /* below navbar */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+#sender-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.sender-tab {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #e3e8ef;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.sender-tab:hover {
+  background: #d0d5dd;
+}
+
+.sender-tab.active {
+  background: #007bff;
+  color: white;
+}
+
+#messages-display {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message-box {
+  background: white;
+  padding: 15px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  text-align: left;
+}
+
+.message-text {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.message-time {
+  font-size: 12px;
+  opacity: 0.7;
+}
