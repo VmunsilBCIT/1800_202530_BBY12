@@ -31,6 +31,10 @@ document.getElementById("friend-list-btn").addEventListener("click", () => {
   window.location.href = "/friendlist.html";
 });
 
+document.getElementById("messages-btn").addEventListener("click", () => {
+  window.location.href = "/messages.html";
+});
+
 // Add Friend button — navigates to addfriends.html
 document.getElementById("add-friend-btn").addEventListener("click", () => {
   window.location.href = "/addfriend.html";

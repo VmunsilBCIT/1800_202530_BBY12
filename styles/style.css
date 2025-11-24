@@ -7,9 +7,19 @@
 }
 
 body {
-  background-image: url("/images/city.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: auto;
+  background: linear-gradient(
+    315deg,
+    rgb(173, 140, 255) 3%,
+    rgba(75, 143, 175, 1) 38%,
+    rgba(248, 190, 95, 1) 68%,
+    rgba(226, 112, 98, 1) 98%
+  );
+  animation: gradient 15s ease infinite;
+  background-size: 400% 400%;
+  background-attachment: fixed;
   color: black;
   text-align: center;
   margin: 0;
@@ -18,11 +28,70 @@ body {
   overflow: hidden;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.wave {
+  background: rgb(255 255 255 / 25%);
+  border-radius: 1000% 1000% 0 0;
+  position: fixed;
+  width: 200%;
+  height: 16em;
+  animation: wave 15s -3s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.8;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+  bottom: -1.25em;
+  animation: wave 27s linear reverse infinite;
+  opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+  bottom: -2.5em;
+  animation: wave 30s -1s reverse infinite;
+  opacity: 0.9;
+}
+
+@keyframes wave {
+  2% {
+    transform: translateX(1);
+  }
+
+  25% {
+    transform: translateX(-25%);
+  }
+
+  50% {
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-25%);
+  }
+
+  100% {
+    transform: translateX(1);
+  }
+}
+
 /* ===============================
    Profile Page
    =============================== */
 #profile {
-  background: #f2f6fc;
   min-height: calc(100vh - 72px - 76px); /* navbar & footer */
 
   padding-top: 100px;
@@ -60,10 +129,10 @@ body {
 }
 
 .profile-img {
-  width: 150px;         /* set any size you want */
+  width: 150px; /* set any size you want */
   height: 150px;
-  border-radius: 50%;   /* makes it a circle */
-  object-fit: cover;    /* auto-crops image to fill the circle */
+  border-radius: 50%; /* makes it a circle */
+  object-fit: cover; /* auto-crops image to fill the circle */
   object-position: center; /* center the crop */
 }
 
@@ -681,7 +750,7 @@ footer {
   background: white;
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 400px;
   margin: auto;
@@ -698,3 +767,64 @@ footer {
   border: 3px solid #ddd;
 }
 
+#messages-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 120px auto 40px; /* below navbar */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+#sender-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.sender-tab {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #e3e8ef;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.sender-tab:hover {
+  background: #d0d5dd;
+}
+
+.sender-tab.active {
+  background: #007bff;
+  color: white;
+}
+
+#messages-display {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message-box {
+  background: white;
+  padding: 15px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  text-align: left;
+}
+
+.message-text {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.message-time {
+  font-size: 12px;
+  opacity: 0.7;
+}

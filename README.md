@@ -41,25 +41,58 @@ Example:
 
 ```
 WaySync/
+├── images
+│   └── PNGs
 ├── src/
+│   └── components/
+│       ├── site-footer.js
+│       └── site-navbar.js
+│   ├── app.js
+│   ├── authentication.js
+│   ├── firebaseConfig.js
+│   ├── friend-profile.js
+│   ├── friendlist.js
+│   ├── friendmain.js
+│   ├── loginSignup.js
 │   ├── main.js
+│   ├── map.js
+│   ├── profile.js
+│   ├── search.js
+│   ├── settings.js
+│   └── signinsecurity.js
 ├── styles/
+│   ├── settings.css
 │   └── style.css
-├── public/
-├── images/
+├── .env
+├── .gitignore
+├── addfriend.html
+├── blocked-user.html
+├── customer-services.html
+├── donotdisturb.html
+├── friend-profile.html
+├── friendlist.html
+├── friends.html
 ├── index.html
+├── language.html
+├── login.html
+├── main-map.html
+├── main.html
+├── profile.html
+├── settings.html
+├── signinsecurity.html
 ├── package.json
-├── README.md
+├── package-lock.json
+└── README.md
 ```
 
 ---
 
 ## Contributors
 
-  - **Tommy White** - BCIT CST Student, has been learning code for around 3 years. Currently familiar with C#, Java, and a bit of C++. I also like playing video games in my free time alone or with friends
-  - **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
-  - **Perry Jiang** - BCIT CST Student, PJ, a group member of the group BBY12。
-  - **Edward Liang** - BCIT CST Student. My personality is pretty easygoing, though I might be a bit shy sometimes because of the language barrier
+- **Tommy White** - BCIT CST Student, has been learning code for around 3 years. Currently familiar with C#, Java, and a bit of C++. I also like playing video games in my free time alone or with friends
+- **Valen Munsil** - BCIT CST Student who programs their own indie game in their free time and aspires to be a game developer in the future.
+- **Perry Jiang** - BCIT CST Student, PJ, a group member of the group BBY12。
+- **Edward Liang** - BCIT CST Student. My personality is pretty easygoing, though I might be a bit shy sometimes because of the language barrier
 
 ---
 
@@ -76,12 +109,6 @@ WaySync/
 
 - Limited use cases when first downloading app if you don't have anyone to use it with.
 - Personal customization could be improved.
-
-### Future Work
-
-- XXX
-- XXX
-- XXX
 
 ---
 
