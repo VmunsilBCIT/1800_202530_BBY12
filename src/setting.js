@@ -1,39 +1,40 @@
 import { auth } from "./firebaseConfig.js";
 import { signOut } from "firebase/auth";
 
-function safeAddListener(id, event, handler) {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener(event, handler);
-}
-
-// Navigation buttons
-safeAddListener("lang", "click", () => {
+// Language bar
+document.getElementById("lang").addEventListener("click", () => {
   window.location.href = "/language.html";
 });
 
-safeAddListener("block", "click", () => {
+// Blacklist bar
+document.getElementById("block").addEventListener("click", () => {
   window.location.href = "/blocked-users.html";
 });
 
-safeAddListener("share", "click", () => {
-  window.location.href = "/sharelocation.html";
+// Do not distrub bar
+document.getElementById("dnd").addEventListener("click", () => {
+  window.location.href = "/donotdisturb.html";
 });
 
-safeAddListener("customer", "click", () => {
+// User customer service bar
+document.getElementById("customer").addEventListener("click", () => {
   window.location.href = "/customer-service.html";
 });
 
-safeAddListener("sns", "click", () => {
+// Change of Email and Password bar
+document.getElementById("sns").addEventListener("click", () => {
   window.location.href = "/signinsecurity.html";
 });
 
 // Logout
 safeAddListener("logoutBtn", "click", () => {
   try {
-    signOut(auth);
-    localStorage.removeItem("loggedIn");
-    window.location.href = "/login.html";
-  } catch (error) {
+    signOut(auth)
+        localStorage.removeItem("loggedIn");
+        console.log("User signed out successfully.");
+        window.location.href = "login.html";
+      }
+  catch(error) {
     console.error("Error signing out:", error);
   }
 });
