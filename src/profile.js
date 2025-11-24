@@ -106,10 +106,10 @@ async function saveProfileImage(fullDataURL) {
     try {
       await setDoc(userDocRef, { profileImage: fullDataURL }, { merge: true });
 
-      console.log("✅ Profile image saved successfully!");
+      console.log("Profile image saved successfully!");
       displayProfileImage(fullDataURL);
     } catch (error) {
-      console.error("❌ Error saving profile image:", error);
+      console.error("Error saving profile image:", error);
     }
   });
 }
