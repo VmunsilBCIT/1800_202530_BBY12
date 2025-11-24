@@ -191,14 +191,23 @@ document.getElementById("submitBtn").addEventListener("click", writeBio);
 
 onAuthReady((user) => {
   if (user) displayBio();
-  else location.href = "index.html";
+  else {
+      location.href = "index.html";
+    }
 });
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
-  signOut(auth).then(() => {
-    window.location.href = "/login.html";
-  });
+  try {
+    signOut(auth)
+        localStorage.removeItem("loggedIn");
+        console.log("User signed out successfully.");
+        window.location.href = "index.html";
+      }
+  catch(error) {
+    console.error("Error signing out:", error);
+  };
 });
+
 
 /* ---------------------------------------------------------
    Initialize Page
