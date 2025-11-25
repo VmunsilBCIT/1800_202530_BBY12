@@ -1,7 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { onAuthReady } from "./authentication.js";
-import { getAuth, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  updateProfile,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const auth = getAuth();
@@ -77,7 +82,9 @@ function enableInlineUsernameEdit(user, usernameDisplay, nameElement) {
    Stores FULL data URL — supports PNG/JPG/WEBP
 --------------------------------------------------------- */
 function uploadImage() {
-  document.getElementById("inputImage").addEventListener("change", handleFileSelect);
+  document
+    .getElementById("inputImage")
+    .addEventListener("change", handleFileSelect);
 
   function handleFileSelect(event) {
     const file = event.target.files[0];
@@ -106,10 +113,10 @@ async function saveProfileImage(fullDataURL) {
     try {
       await setDoc(userDocRef, { profileImage: fullDataURL }, { merge: true });
 
-      console.log("✅ Profile image saved successfully!");
+      console.log("Profile image saved successfully!");
       displayProfileImage(fullDataURL);
     } catch (error) {
-      console.error("❌ Error saving profile image:", error);
+      console.error("Error saving profile image:", error);
     }
   });
 }
@@ -152,7 +159,8 @@ async function displayBio() {
     const snap = await getDoc(bioRef);
 
     if (snap.exists()) {
-      document.getElementById("description").value = snap.data().description || "";
+      document.getElementById("description").value =
+        snap.data().description || "";
     }
   } catch (err) {
     console.error("Error loading bio:", err);
