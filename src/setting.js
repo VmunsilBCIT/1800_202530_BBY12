@@ -1,28 +1,33 @@
 import { auth } from "./firebaseConfig.js";
 import { signOut } from "firebase/auth";
 
+function safeAddListener(id, event, handler) {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener(event, handler);
+}
+
 // Language bar
-document.getElementById("lang").addEventListener("click", () => {
+safeAddListener("lang", "click", () => {
   window.location.href = "/language.html";
 });
 
-// Blacklist bar
-document.getElementById("block").addEventListener("click", () => {
+// Blocked Users bar
+safeAddListener("block", "click", () => {
   window.location.href = "/blocked-users.html";
 });
 
-// Do not distrub bar
-document.getElementById("dnd").addEventListener("click", () => {
-  window.location.href = "/donotdisturb.html";
+// Share Location bar
+safeAddListener("share", "click", () => {
+  window.location.href = "/sharelocation.html";
 });
 
 // User customer service bar
-document.getElementById("customer").addEventListener("click", () => {
+safeAddListener("customer", "click", () => {
   window.location.href = "/customer-service.html";
 });
 
 // Change of Email and Password bar
-document.getElementById("sns").addEventListener("click", () => {
+safeAddListener("sns", "click", () => {
   window.location.href = "/signinsecurity.html";
 });
 

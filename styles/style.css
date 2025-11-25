@@ -342,6 +342,27 @@ site-navbar .navbar {
 .nav-title:hover {
   opacity: 0.7;
 }
+
+#account {
+  filter: none !important;  /* remove the dark/gray filter */
+  object-fit: cover;         /* ensure it fills the 46x46 box nicely */
+  border-radius: 50%; 
+}
+
+.nav-profile {
+  filter: none; /* Remove grayscale filter */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.nav-profile:hover {
+  opacity: 0.7;
+  transform: scale(1.08);
+}
+
 /* #setting,
 #back {
   float: left;
@@ -658,6 +679,11 @@ footer {
 }
 
 #listfriend {
+  width: 40px;
+  height: 40px;
+}
+
+#messagesfriends{
   width: 40px;
   height: 40px;
 }
