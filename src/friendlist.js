@@ -14,7 +14,6 @@ onAuthStateChanged(auth, async (user) => {
 
   const currentUID = user.uid;
 
-  
   const userDocRef = doc(db, "userIDs", currentUID);
   const userSnap = await getDoc(userDocRef);
 
@@ -45,17 +44,15 @@ onAuthStateChanged(auth, async (user) => {
 
       div.innerHTML = `
         <div class="friend-card-inner">
-          <p><strong>UserID:</strong> ${friendData.userID}</p>
+          <p><strong>Username:</strong> ${friendData.username}</p>
           <p><strong>Email:</strong> ${friendData.email}</p>
           <button class="btn btn-primary view-profile-btn">View Profile</button>
         </div>
       `;
 
-  
       div.querySelector(".view-profile-btn").addEventListener("click", () => {
         window.location.href = `friend-profile.html?uid=${friendUID}`;
       });
-
     } else {
       div.innerHTML = `<p>Unknown user: ${friendUID}</p>`;
     }
