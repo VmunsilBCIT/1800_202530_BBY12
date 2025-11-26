@@ -34,23 +34,18 @@
         <div class="wave"></div>
       </div>
 
-      <!-- Profile Page -->
-      <div id="profile-page">
-        <div class="profile-container">
-          <!-- Left side: Profile image & username -->
-          <div class="profile-left">
-            <img
-              id="profileImage"
-              class="profile-img"
-              src="/images/icon-account.PNG"
-              alt="Profile Picture"
-              width="150"
-              height="150"
-            />
-            <br />
-            <input type="file" id="inputImage" accept="image/*" />
-            <strong><span id="username-display"></span></strong>
-          </div>
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
+    <div id="profile-page">
+      <div class="profile-container">
+        <div class="profile-left">
+            <img id="profileImage" class="profile-img" src="/images/icon-account.PNG" alt="Profile Picture" width="150" height="150">
+            <br>
+            <input type="file" id="inputImage" accept="image/*" >
+            <strong>
+              <span id="username-display" data-tooltip="Click to edit"></span>
+            </strong>
+        </div>
 
           <!-- Right side: Profile Info -->
           <div class="profile-right">

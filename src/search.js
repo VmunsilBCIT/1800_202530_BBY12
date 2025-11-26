@@ -49,7 +49,7 @@ searchButton.addEventListener("click", async () => {
       showResult(`
         <div>
           <p>Found user: <strong>${data.email}</strong></p>
-          <button id="add-friend-btn" style="margin-top:10px; padding:8px 16px;">
+          <button id="add-friend-btn" style="margin-top:10px; padding:8px 16px;" class="btn btn-primary btn-lg">
             Add Friend
           </button>
         </div>
