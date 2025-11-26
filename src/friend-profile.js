@@ -8,7 +8,6 @@ const db = getFirestore();
 const params = new URLSearchParams(window.location.search);
 const uid = params.get("uid");
 
-
 const usernameEl = document.getElementById("friend-username");
 const useridEl = document.getElementById("friend-userid");
 const emailEl = document.getElementById("friend-email");
@@ -58,13 +57,11 @@ async function loadProfile() {
     } else {
       bioEl.textContent = "No bio written.";
     }
-
   } catch (err) {
     console.error("Profile loading error:", err);
     usernameEl.textContent = "Error loading profile.";
   }
 }
-
 
 /* ---------------------------------------------------------
    Display image on profile page
@@ -91,6 +88,6 @@ async function loadFriendProfileImage() {
     }
   });
 }
-  
+
 loadProfile();
 loadFriendProfileImage();

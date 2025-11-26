@@ -200,22 +200,20 @@ document.getElementById("submitBtn").addEventListener("click", writeBio);
 onAuthReady((user) => {
   if (user) displayBio();
   else {
-      location.href = "index.html";
-    }
+    location.href = "index.html";
+  }
 });
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
   try {
-    signOut(auth)
-        localStorage.removeItem("loggedIn");
-        console.log("User signed out successfully.");
-        window.location.href = "index.html";
-      }
-  catch(error) {
+    signOut(auth);
+    localStorage.removeItem("loggedIn");
+    console.log("User signed out successfully.");
+    window.location.href = "index.html";
+  } catch (error) {
     console.error("Error signing out:", error);
-  };
+  }
 });
-
 
 /* ---------------------------------------------------------
    Initialize Page

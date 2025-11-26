@@ -4,6 +4,12 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 const db = getFirestore();
 const auth = getAuth();
 
+// Read UID from URL
+const params = new URLSearchParams(window.location.search);
+const uid = params.get("uid");
+
+const pfpEl = document.getElementById("friend-pfp");
+
 const friendListContainer = document.getElementById("friend-list-container");
 
 onAuthStateChanged(auth, async (user) => {
@@ -44,7 +50,13 @@ onAuthStateChanged(auth, async (user) => {
 
       div.innerHTML = `
         <div class="friend-card-inner">
-          <p><strong>Username:</strong> ${friendData.username}</p>
+         <div class="profile-card">
+          <img
+            id="friend-pfp"
+            class="profile-img"
+            src="${friendData.profileImage}"
+          />
+          <p> ${friendData.username}</p>
           <p><strong>Email:</strong> ${friendData.email}</p>
           <button class="btn btn-primary view-profile-btn">View Profile</button>
         </div>
