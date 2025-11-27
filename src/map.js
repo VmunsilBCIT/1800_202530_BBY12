@@ -174,6 +174,11 @@ async function addFriendsToMap(map, currentUserId) {
       markerContainer.style.display = "flex";
       markerContainer.style.flexDirection = "column";
       markerContainer.style.alignItems = "center";
+      markerContainer.style.cursor = "pointer";
+
+      markerContainer.addEventListener("click", () => {
+        window.location.href = `friend-profile.html?uid=${friendId}`;
+      });
 
       const label = document.createElement("div");
       label.textContent = friendData.username || "Friend";
