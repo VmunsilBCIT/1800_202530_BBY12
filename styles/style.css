@@ -34,6 +34,12 @@ body {
   min-height: 100vh;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 @keyframes gradient {
@@ -257,6 +263,11 @@ body {
   color: rgb(0, 0, 0);
 }
 
+.navbar, footer {
+  position: static;
+  width: 100%;
+}
+
 /* ===========================
    WHITE MINIMAL NAVBAR
    =========================== */
@@ -282,7 +293,7 @@ site-navbar .navbar {
 }
 
 .navbar {
-  position: fixed ！important;
+  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -423,6 +434,134 @@ site-navbar .navbar {
 #back {
   cursor: pointer;
 }
+
+/* ============================================
+   LOGIN/Register BAR – Make it seems like card
+   ============================================ */
+#loginView {
+  width: 350px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+#signupView {
+  width: 350px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+/* ======================================
+   Modal related - Change password, email
+   ====================================== */
+
+#modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#changePasswordContainer {
+  background: white;
+  width: 25vw;
+  min-width: 260px;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#EmailContainer {
+  background: white;
+  width: 25vw;
+  min-width: 260px;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#confirmPasswordBtn {
+  background: #0078ff;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#Confirm {
+  background: #0078ff;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#cancelPasswordBtn {
+  background: #777;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#Cancel {
+  background: #777;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===========================
+   Friends List
+   =========================== */
+#friend-list-container {
+  width: 400px;
+  margin: 50px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+#friends-list-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
 
 /* ===========================
    FOOTER – WHITE MINIMAL STYLE
