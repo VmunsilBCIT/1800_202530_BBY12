@@ -1,0 +1,1 @@
+import"./bootstrap.esm-Cguh7NES.js";import{o}from"./authentication-BskF9NO0.js";function m(){const t=document.getElementById("name-goes-here");o(e=>{if(!e){location.href="index.html";return}const n=e.displayName||e.email;t&&(t.textContent=`${n}!`)})}m();
