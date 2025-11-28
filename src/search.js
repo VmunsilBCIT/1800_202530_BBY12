@@ -16,12 +16,14 @@ const resultContainer = document.getElementById("result-container");
 const resultText = document.getElementById("result-text");
 const backBtn = document.getElementById("back-btn");
 
+//Shows the results of what the search query and displays it in the text box
 function showResult(html) {
   resultContainer.style.display = "block";
   resultText.innerHTML = html;
   resultText.style.color = "black";
 }
 
+//Search button functionality
 searchButton.addEventListener("click", async () => {
   let userID = searchInput.value.trim();
 
@@ -64,6 +66,7 @@ searchButton.addEventListener("click", async () => {
   }
 });
 
+//Allows the user to add friends when a search query is preformed
 async function addFriend(friendUID, friendEmail) {
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -91,6 +94,7 @@ async function addFriend(friendUID, friendEmail) {
   }
 }
 
+//Returns the user back to the friends page
 backBtn.addEventListener("click", () => {
   window.location.href = "/friends.html";
 });

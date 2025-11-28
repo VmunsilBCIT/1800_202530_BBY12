@@ -167,6 +167,7 @@ async function displayBio() {
   }
 }
 
+//Fills out the data for the bio when the user inputs new data
 async function writeBio() {
   const bioDescription = document.getElementById("description").value.trim();
   if (!bioDescription) {

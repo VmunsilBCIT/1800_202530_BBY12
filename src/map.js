@@ -220,6 +220,7 @@ async function addFriendsToMap(map, currentUserId) {
 
 const PING_RADIUS_METERS = 750;
 
+//Displays the button that sends message to nearby friends when ping
 function showPingBox() {
   if (document.getElementById("pingBox")) return;
 
@@ -270,6 +271,7 @@ function showPingBox() {
   cancelBtn.addEventListener("click", () => container.remove());
 }
 
+//Function to ping friends nearby
 async function pingNearbyFriends(message) {
   if (!mapInstance || !auth.currentUser) return;
 
@@ -322,6 +324,7 @@ async function pingNearbyFriends(message) {
   }
 }
 
+//gives the ping button its functionality
 const pingBtn = document.getElementById("pingBtn");
 if (pingBtn) {
   pingBtn.addEventListener("click", () => {
