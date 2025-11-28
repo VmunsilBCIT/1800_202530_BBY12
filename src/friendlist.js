@@ -4,8 +4,15 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 const db = getFirestore();
 const auth = getAuth();
 
+// Read UID from URL
+const params = new URLSearchParams(window.location.search);
+const uid = params.get("uid");
+
+const pfpEl = document.getElementById("friend-pfp");
+
 const friendListContainer = document.getElementById("friend-list-container");
 
+// checks user authentication and friends field before showing data
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     friendListContainer.innerHTML = "<p>Please log in to see your friends.</p>";
@@ -14,7 +21,6 @@ onAuthStateChanged(auth, async (user) => {
 
   const currentUID = user.uid;
 
-  
   const userDocRef = doc(db, "userIDs", currentUID);
   const userSnap = await getDoc(userDocRef);
 
@@ -33,6 +39,7 @@ onAuthStateChanged(auth, async (user) => {
 
   friendListContainer.innerHTML = "";
 
+  // Show data for each friend in the friend list
   for (const friendUID of friendsArray) {
     const friendRef = doc(db, "userIDs", friendUID);
     const friendSnap = await getDoc(friendRef);
@@ -45,17 +52,21 @@ onAuthStateChanged(auth, async (user) => {
 
       div.innerHTML = `
         <div class="friend-card-inner">
-          <p><strong>UserID:</strong> ${friendData.userID}</p>
+         <div class="profile-card">
+          <img
+            id="friend-pfp"
+            class="profile-img"
+            src="${friendData.profileImage}"
+          />
+          <p> ${friendData.username}</p>
           <p><strong>Email:</strong> ${friendData.email}</p>
           <button class="btn btn-primary view-profile-btn">View Profile</button>
         </div>
       `;
 
-  
       div.querySelector(".view-profile-btn").addEventListener("click", () => {
         window.location.href = `friend-profile.html?uid=${friendUID}`;
       });
-
     } else {
       div.innerHTML = `<p>Unknown user: ${friendUID}</p>`;
     }

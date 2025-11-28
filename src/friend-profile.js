@@ -1,14 +1,15 @@
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+const auth = getAuth();
 const db = getFirestore();
 
 // Read UID from URL
 const params = new URLSearchParams(window.location.search);
 const uid = params.get("uid");
 
-console.log("Friend UID:", uid);
-
 const usernameEl = document.getElementById("friend-username");
+const useridEl = document.getElementById("friend-userid");
 const emailEl = document.getElementById("friend-email");
 const bioEl = document.getElementById("friend-bio");
 const locEl = document.getElementById("friend-loc");
@@ -32,7 +33,8 @@ async function loadProfile() {
 
     const data = snap.data();
 
-    usernameEl.textContent = data.userID || "(no username)";
+    usernameEl.textContent = data.username || "(no username)";
+    useridEl.textContent = data.userID || "(no userID)";
     emailEl.textContent = data.email || "(no email)";
 
     // Location
@@ -55,16 +57,37 @@ async function loadProfile() {
     } else {
       bioEl.textContent = "No bio written.";
     }
-
   } catch (err) {
     console.error("Profile loading error:", err);
     usernameEl.textContent = "Error loading profile.";
   }
 }
 
-loadProfile();
+/* ---------------------------------------------------------
+   Display image on profile page
+--------------------------------------------------------- */
+function displayProfileImage(fullDataURL) {
+  const imgElement = document.getElementById("friend-pfp");
+  if (imgElement) {
+    imgElement.src = fullDataURL; // FULL URL
+  }
+}
 
-// Back
-document.getElementById("back-btn").addEventListener("click", () => {
-  window.history.back();
-});
+/* ---------------------------------------------------------
+   Load profile image when opening page
+--------------------------------------------------------- */
+async function loadFriendProfileImage() {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+
+    const userDocRef = doc(db, "userIDs", uid);
+    const snap = await getDoc(userDocRef);
+
+    if (snap.exists() && snap.data().profileImage) {
+      displayProfileImage(snap.data().profileImage);
+    }
+  });
+}
+
+loadProfile();
+loadFriendProfileImage();

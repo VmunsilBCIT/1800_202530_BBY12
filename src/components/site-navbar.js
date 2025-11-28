@@ -2,6 +2,37 @@
 // @ts-nocheck
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "/src/firebaseConfig.js";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+
+const db = getFirestore();
+
+/* ---------------------------------------------------------
+   Display image on NavBar
+--------------------------------------------------------- */
+function displayProfileImage(fullDataURL) {
+  const navbar = document.querySelector("site-navbar");
+  if (!navbar) return;
+  const imgElement = document.getElementById("account");
+  if (imgElement) {
+    imgElement.src = fullDataURL; // FULL URL
+  }
+}
+
+/* ---------------------------------------------------------
+   Load profile image when opening page
+--------------------------------------------------------- */
+async function loadProfileImage() {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+
+    const userDocRef = doc(db, "userIDs", user.uid);
+    const snap = await getDoc(userDocRef);
+
+    if (snap.exists() && snap.data().profileImage) {
+      displayProfileImage(snap.data().profileImage);
+    }
+  });
+}
 
 class SiteNavbar extends HTMLElement {
   constructor() {
@@ -23,19 +54,21 @@ class SiteNavbar extends HTMLElement {
         </div>
 
         <div class="nav-center">
-          <span id="mapway" class="nav-title">WaySync</span>
+          <span id="mapway" class="nav-title">WaySync
           <img
             id="logo"
             class="nav-logo"
             src="images/WaySync Logo.png"
             alt="WaySync Logo"
           />
+          </span>
+          
         </div>
 
         <div class="nav-right">
           <img
             id="account"
-            class="nav-icon"
+            class="nav-profile"
             src="images/icon-account.PNG"
             alt="Account"
           />
@@ -91,3 +124,8 @@ class SiteNavbar extends HTMLElement {
 }
 
 customElements.define("site-navbar", SiteNavbar);
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProfileImage();
+  console.log("IMG in document:", document.getElementById("account"));
+});

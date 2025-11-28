@@ -7,7 +7,10 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
 
     <!-- Web Components for shared navbar and footer layout -->
     <script type="module" src="/src/components/site-navbar.js"></script>
@@ -33,23 +36,31 @@
     <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
 
-    <br />
-    <br />
-    <br />
+    <body>
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </body>
 
+    <br />
+    <br />
+    <br />
+    <!--Setting title-->
     <div class="setting-container">
       <div class="settings-header">
         <span class="title">Settings</span>
       </div>
 
+      <!--Setting bar-->
       <ul class="setting-list">
-        <li id="lang">Language <span class="arrow" >→</span></li>
+        <li id="lang">Language <span class="arrow">→</span></li>
         <li id="block">Blocked Users <span class="arrow">→</span></li>
-        <li id="dnd">Do not disturb <span class="arrow">→</span></li>
+        <li id="share">Share Location <span class="arrow">→</span></li>
         <li id="customer">Customer Service <span class="arrow">→</span></li>
         <li id="sns">Sign in Security <span class="arrow">→</span></li>
       </ul>
-      <div id="logoutBtn" class="logout-btn">LOGOUT</div>
     </div>
 
     <!-- our own footer goes here -->

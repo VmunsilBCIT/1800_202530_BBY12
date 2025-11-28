@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Friend Profile</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <title>Friend Profile</title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
 
-  <script type="module" src="/src/components/site-navbar.js"></script>
-  <script type="module" src="/src/components/site-footer.js"></script>
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
 
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="./styles/style.css" />
-</head>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
 
-<body>
-  <site-navbar></site-navbar>
+  <body>
+    <!-- Navbar -->
+    <site-navbar></site-navbar>
 
-  <div class="container mt-5" id="profile-container">
-    <h2 class="text-center mb-4">Friend Profile</h2>
+    <div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+    <br /><br /><br />
 
-    <div class="profile-card">
-      <img id="friend-pfp" class="profile-img" src="./images/default-pfp.png">
+    <!-- Shows the profile page for the user, creates divs for JS to populate with data from the database -->
+    <div class="container mt-5" id="profile-container">
+      <div class="profile-card">
+        <img
+          id="friend-pfp"
+          class="profile-img"
+          src="./images/default-pfp.png"
+        />
 
-      <h4 id="friend-username" class="text-center mt-3">Loading...</h4>
-      <p id="friend-email" class="text-center text-muted"></p>
-
-      <hr />
-
-      <div>
-        <h5>Bio</h5>
+        <h4 id="friend-username" class="text-center mt-3">Loading...</h4>
+        <p id="friend-userid" class="text-center mt-3"></p>
+        <p id="friend-email" class="text-center text-muted"></p>
         <p id="friend-bio">Loading bio...</p>
-      </div>
-
-      <div class="mt-4">
-        <h5>Location</h5>
         <p id="friend-loc">Loading location...</p>
       </div>
-
-      <button class="btn btn-secondary mt-4" id="back-btn">Back</button>
     </div>
-  </div>
 
-  <site-footer></site-footer>
+    <!-- footer -->
+    <site-footer></site-footer>
 
-  <script type="module" src="./src/friend-profile.js"></script>
-</body>
+    <script type="module" src="./src/friend-profile.js"></script>
+  </body>
 </html>

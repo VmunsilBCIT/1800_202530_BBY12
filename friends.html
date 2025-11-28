@@ -7,7 +7,7 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
 
     <!-- Web Components for shared navbar and footer layout -->
     <script type="module" src="/src/components/site-navbar.js"></script>
@@ -31,6 +31,13 @@
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
+    <body>
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </body>
     <br />
     <br />
     <br />
@@ -40,16 +47,22 @@
     <br />
     <br />
     <div class="container">
-      <!-- Friend List Button -->
-      <div class="button" id="friend-list-btn">
-        <img src="./images/list.png" alt="Friend List Icon" class="icon" />
-        <span class="label">Friend List</span>
+      <!-- Add Friend Button -->
+      <div class="btn btn-primary btn-lg" id="messages-btn">
+        <img src="./images/chat.png" alt="Messages Icon" class="icon" id="messagesfriends" />
+        Messages from friends
       </div>
 
+      <!-- Friend List Button -->
+      <button class="btn btn-primary btn-lg" id="friend-list-btn">
+        <img src="./images/list.png" alt="Friend List Icon" class="icon" id="listfriend"/>
+        See Current Friends
+      </button>
+
       <!-- Add Friend Button -->
-      <div class="button" id="add-friend-btn">
-        <img src="./images/addfriend.png" alt="Add Friend Icon" class="icon" />
-        <span class="label">Add Friend</span>
+      <div class="btn btn-primary btn-lg" id="add-friend-btn">
+        <img src="./images/addfriend.png" alt="Add Friend Icon" class="icon" id="addfriend"/>
+        Add New Friends
       </div>
 
       <!-- Display current user ID -->

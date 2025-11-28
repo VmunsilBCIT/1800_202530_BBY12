@@ -7,7 +7,10 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
 
     <!-- Web Components for shared navbar and footer layout -->
     <script type="module" src="/src/components/site-navbar.js"></script>
@@ -32,6 +35,15 @@
     <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
 
+    <!-- The background wave design -->
+    <body>
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </body>
+
     <br />
 
     <div id="welcome">
@@ -42,6 +54,7 @@
       >
     </div>
 
+    <!-- Button that leads to main map -->
     <div id="button" class="col-lg-6 col-xxl-4 my-5 mx-auto">
       <div class="d-grid gap-2">
         <button
@@ -49,10 +62,56 @@
           type="button"
           onclick="window.location.href='main-map.html'"
         >
-          Explore!
+          View Map
         </button>
       </div>
     </div>
+
+    <section id="about-us" class="container my-5">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">About Us</h2>
+        <p class="text-muted">
+          WaySync helps friends stay connected by sharing real-time locations,
+          exploring routes, and discovering nearby people safely and
+          intuitively.
+        </p>
+      </div>
+
+      <div class="row justify-content-center">
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-3">
+          <div class="about-card p-4 shadow-sm rounded">
+            <h4 class="fw-semibold">🔍 Real-Time Location</h4>
+            <p>
+              See your friends on the map instantly and stay connected wherever
+              you go.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-3">
+          <div class="about-card p-4 shadow-sm rounded">
+            <h4 class="fw-semibold">🗺 Stay Connected Wherever You Are</h4>
+            <p>
+              WaySync helps you share your live location, find nearby friends,
+              and explore together.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4 mb-3">
+          <div class="about-card p-4 shadow-sm rounded">
+            <h4 class="fw-semibold">🤝 Social Experience</h4>
+            <p>
+              Add friends, view profiles, and interact through a simple
+              mobile-friendly UI.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- our own footer goes here -->
     <site-footer></site-footer>

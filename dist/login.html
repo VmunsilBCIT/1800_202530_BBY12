@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="comp1800 template" content="My 1800 App" />
+    <title>WaySync</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-BjAVNkfj.png" />
+    <!-- Web Components for shared navbar and footer -->
+    <script type="module" crossorigin src="/assets/login-DxA-UC4J.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-D4sG9sV-.js">
+    <link rel="modulepreload" crossorigin href="/assets/authentication-BskF9NO0.js">
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Cguh7NES.js">
+    <link rel="modulepreload" crossorigin href="/assets/app-Dhcf0j9x.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-DH3Akp4m.css">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-C11chwFa.css">
+  </head>
+
+  <body>
+    <!-- Main container -->
+
+    <body>
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </body>
+    <div class="container py-5" style="max-width: 420px">
+      <!-- Alerts -->
+      <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
+
+      <!-- Login View -->
+      <div id="loginView">
+        <h2 class="auth-title">Login</h2>
+        <form id="loginForm" novalidate>
+          <input
+            type="email"
+            id="loginEmail"
+            class="auth-input"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="loginPassword"
+            class="auth-input"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        </form>
+        <p class="auth-switch">
+          Don't have an account? <a href="#" id="toSignup">Sign up!</a>
+        </p>
+      </div>
+
+      <!-- Signup View -->
+      <div id="signupView" class="d-none">
+        <h2 class="auth-title">Sign up</h2>
+        <form id="signupForm" novalidate>
+          <input
+            type="text"
+            id="signupName"
+            class="auth-input"
+            placeholder="Name"
+            required
+          />
+          <input
+            type="email"
+            id="signupEmail"
+            class="auth-input"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="signupPassword"
+            class="auth-input"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
+        </form>
+        <p class="auth-switch">
+          Already have an account? <a href="#" id="toLogin">Login!</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer (Web Component) -->
+    <site-footer></site-footer>
+
+    <!-- Scripts: load in correct order -->
+  </body>
+</html>

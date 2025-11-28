@@ -3,10 +3,14 @@
   <head>
     <title>WaySync</title>
     <meta name="comp1800 BBY-12 WaySync" content="WaySync 1800 App" />
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
 
     <!-- Web Components for shared navbar and footer layout -->
     <script type="module" src="/src/components/site-navbar.js"></script>
@@ -31,19 +35,22 @@
 
     <!-- our own navbar goes here -->
     <site-navbar></site-navbar>
-
     <br />
     <br />
     <br />
-
     <div class="setting-container">
       <div class="settings-header">
-        <span class="title">Do Not Disturb Toggle</span>
+        <span class="title">Share Location to Others</span>
       </div>
-
       <ul class="setting-list">
-        <li>Off <span class="arrow">Current</span></li>
-        <li>Off <span class="arrow"></span></li>
+        <li class="option" data-value="yes">
+          Yes
+          <img src="images/mark icon.png" alt="check mark icon" class="mark" />
+        </li>
+        <li class="option" data-value="no">
+          Yes
+          <img src="images/mark icon.png" alt="check mark icon" class="mark" />
+        </li>
       </ul>
     </div>
 

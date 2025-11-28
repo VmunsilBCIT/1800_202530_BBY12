@@ -7,7 +7,7 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
 
     <!-- Web Components for shared navbar and footer layout -->
     <script type="module" src="/src/components/site-navbar.js"></script>
@@ -31,13 +31,20 @@
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
+    <body>
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </body>
     <br />
     <br />
     <div class="container">
       <br />
-      <br />
       <h2 id="welcome">Add a Friend</h2>
 
+      <!-- the text box that displays where the user can input a friend's ID -->
       <div class="search-container">
         <label id="search-label" for="search-input">Enter User ID:</label>
         <input
@@ -47,14 +54,13 @@
         />
         <button id="search-button">Search</button>
 
-        <div id="result-container" style="display: none">
+        <div
+          class="btn btn-primary btn-lg"
+          id="result-container"
+          style="display: none"
+        >
           <p id="result-text"></p>
         </div>
-      </div>
-
-      <div class="button" id="back-btn">
-        <img src="./images/icon-back.png" alt="Add Friend Icon" class="icon" />
-        <span class="label">Back</span>
       </div>
     </div>
 

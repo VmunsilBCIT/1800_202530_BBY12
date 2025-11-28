@@ -62,6 +62,19 @@ body {
   font-size: 18px;
 }
 
+.mark {
+  visibility: hidden;
+  height: 40px;
+  width: 40px;
+  filter: opacity(0.6);
+  background: transparent !important;
+}
+
+.option.selected .mark {
+  visibility: visible;
+  background: transparent !important;
+}
+
 .logout-btn {
   text-align: center;
   padding: 16px;

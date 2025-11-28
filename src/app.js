@@ -11,7 +11,5 @@ import "/styles/style.css";
 //--------------------------------------------------------------
 
 // This is an example function. Replace it with your own logic.
-function sayHello() {
-  // TODO: implement your logic here
-}
+function sayHello() {}
 document.addEventListener("DOMContentLoaded!", sayHello);
