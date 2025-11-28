@@ -64,6 +64,7 @@ function initAuthUI() {
     signupView?.querySelector("input")?.focus();
   });
 
+  //Login button
   toLoginBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     hideError();

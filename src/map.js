@@ -10,6 +10,7 @@ let mapLoaded = false;
 const userMarkerId = "userLocationPoint";
 const userRadiusId = "userLocationRadius";
 
+//saves the user location to firebase
 async function saveUserLocation(userId, username, coords) {
   try {
     const userDocRef = doc(db, "userIDs", userId);
@@ -33,6 +34,7 @@ async function saveUserLocation(userId, username, coords) {
   }
 }
 
+//displays the map into a sized div
 function showMap() {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -48,6 +50,7 @@ function showMap() {
   );
 }
 
+//Updates map when reloading also updates data on start up
 async function initOrUpdateMap(position) {
   const userLocation = [position.coords.longitude, position.coords.latitude];
 
@@ -78,6 +81,7 @@ async function initOrUpdateMap(position) {
   }
 }
 
+//updates where the main user's display pin is
 function updateUserPin(map, userLocation) {
   if (!mapLoaded) return;
 
@@ -103,11 +107,13 @@ function updateUserPin(map, userLocation) {
     });
   }
 
+  //defines the radius if the ping circle
   const radiusPoly = turf.circle(userLocation, 750 / 1000, {
     steps: 64,
     units: "kilometers",
   });
 
+  //Fills in the ping radius circle
   if (map.getSource(userRadiusId)) {
     map.getSource(userRadiusId).setData(radiusPoly);
   } else {
@@ -130,8 +136,10 @@ function updateUserPin(map, userLocation) {
   }
 }
 
+//Unused at the moment but keeping in code incase I want to re-add specific map controls
 function addControls(map) {}
 
+//What to display if errors occur
 function initMapFallback(err) {
   console.warn("Geolocation failed:", err.message);
   const fallbackCenter = [-123.0016, 49.25324];
@@ -149,6 +157,7 @@ function initMapFallback(err) {
   });
 }
 
+//Add a pin for each friend inside the friends list on firebase per user
 async function addFriendsToMap(map, currentUserId) {
   if (!mapLoaded) return;
 

@@ -4,7 +4,7 @@ import {
   updateEmail,
   updatePassword,
   EmailAuthProvider,
-  reauthenticateWithCredential
+  reauthenticateWithCredential,
 } from "firebase/auth";
 
 //reset modal bar
@@ -52,9 +52,11 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // ------------ Change Email ---------------
-document.getElementById("change-email-btn").addEventListener("click", async () => {
-  openEmailModal();
-});
+document
+  .getElementById("change-email-btn")
+  .addEventListener("click", async () => {
+    openEmailModal();
+  });
 
 document.getElementById("Confirm").addEventListener("click", async () => {
   try {
@@ -82,42 +84,43 @@ document.getElementById("change-password-btn").addEventListener("click", () => {
 });
 
 //check password when click confirm button
-document.getElementById("confirmPasswordBtn").addEventListener("click", async () => {
-  const user = auth.currentUser;
+document
+  .getElementById("confirmPasswordBtn")
+  .addEventListener("click", async () => {
+    const user = auth.currentUser;
 
-  const currentPass = document.getElementById("currentPassword").value;
-  const newPass = document.getElementById("newPassword").value;
-  const confirmPass = document.getElementById("confirmPassword").value;
+    const currentPass = document.getElementById("currentPassword").value;
+    const newPass = document.getElementById("newPassword").value;
+    const confirmPass = document.getElementById("confirmPassword").value;
 
-  if (!currentPass || !newPass || !confirmPass) {
-    alert("All fields are required.");
-    return;
-  }
-
-  if (newPass !== confirmPass) {
-    alert("New passwords do not match.");
-    return;
-  }
-
-  try {
-    // Step 1: Verify current password
-    const credential = EmailAuthProvider.credential(user.email, currentPass);
-    await reauthenticateWithCredential(user, credential);
-
-    // Step 2: Update password
-    await updatePassword(user, newPass);
-
-    alert("Password updated successfully!");
-    closeModal();
-    reset();
-
-  } catch (err) {
-    if (err.code === "auth/wrong-password") {
-      alert("Current password is incorrect.");
-    } else if (err.code === "auth/weak-password") {
-      alert("Password must be at least 6 characters.");
-    } else {
-      alert("Error: " + err.message);
+    if (!currentPass || !newPass || !confirmPass) {
+      alert("All fields are required.");
+      return;
     }
-  }
-});
+
+    if (newPass !== confirmPass) {
+      alert("New passwords do not match.");
+      return;
+    }
+
+    try {
+      // Step 1: Verify current password
+      const credential = EmailAuthProvider.credential(user.email, currentPass);
+      await reauthenticateWithCredential(user, credential);
+
+      // Step 2: Update password
+      await updatePassword(user, newPass);
+
+      alert("Password updated successfully!");
+      closeModal();
+      reset();
+    } catch (err) {
+      if (err.code === "auth/wrong-password") {
+        alert("Current password is incorrect.");
+      } else if (err.code === "auth/weak-password") {
+        alert("Password must be at least 6 characters.");
+      } else {
+        alert("Error: " + err.message);
+      }
+    }
+  });
