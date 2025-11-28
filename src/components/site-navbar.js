@@ -4,6 +4,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "/src/firebaseConfig.js";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
+import settingsIcon from "/images/icon-settings.PNG";
+import logoIcon from "/images/WaySync Logo.png";
+import accountIcon from "/images/icon-account.PNG";
+
 const db = getFirestore();
 
 /* ---------------------------------------------------------
@@ -48,7 +52,7 @@ class SiteNavbar extends HTMLElement {
           <img
             id="setting"
             class="nav-icon"
-            src="images/icon-settings.PNG"
+            src="${settingsIcon}"
             alt="Settings"
           />
         </div>
@@ -58,7 +62,7 @@ class SiteNavbar extends HTMLElement {
           <img
             id="logo"
             class="nav-logo"
-            src="images/WaySync Logo.png"
+            src="${logoIcon}"
             alt="WaySync Logo"
           />
           </span>
@@ -69,7 +73,7 @@ class SiteNavbar extends HTMLElement {
           <img
             id="account"
             class="nav-profile"
-            src="images/icon-account.PNG"
+            <img src="${accountIcon}"
             alt="Account"
           />
           <div id="authControls" class="nav-auth"></div>
