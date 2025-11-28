@@ -8,7 +8,7 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     const userUID = user.uid;
 
-    // 🔹 Path: userIDs/{userUID}
+    // Path: userIDs/{userUID}
     const userDocRef = doc(db, "userIDs", userUID);
     const userDocSnap = await getDoc(userDocRef);
 
@@ -27,15 +27,17 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+//Friends list button
 document.getElementById("friend-list-btn").addEventListener("click", () => {
   window.location.href = "/friendlist.html";
 });
 
+//Messages button
 document.getElementById("messages-btn").addEventListener("click", () => {
   window.location.href = "/messages.html";
 });
 
-// Add Friend button — navigates to addfriends.html
+//Add Friend button
 document.getElementById("add-friend-btn").addEventListener("click", () => {
   window.location.href = "/addfriend.html";
 });

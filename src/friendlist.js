@@ -12,6 +12,7 @@ const pfpEl = document.getElementById("friend-pfp");
 
 const friendListContainer = document.getElementById("friend-list-container");
 
+// checks user authentication and friends field before showing data
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     friendListContainer.innerHTML = "<p>Please log in to see your friends.</p>";
@@ -38,6 +39,7 @@ onAuthStateChanged(auth, async (user) => {
 
   friendListContainer.innerHTML = "";
 
+  // Show data for each friend in the friend list
   for (const friendUID of friendsArray) {
     const friendRef = doc(db, "userIDs", friendUID);
     const friendSnap = await getDoc(friendRef);

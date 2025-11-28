@@ -1,4 +1,3 @@
-/**/
 body {
   margin: 0;
   background-color: #f2f2f7;
@@ -63,7 +62,7 @@ body {
   font-size: 18px;
 }
 
-.mark{
+.mark {
   visibility: hidden;
   height: 40px;
   width: 40px;

@@ -26,12 +26,12 @@ import {
 
 const db = getFirestore(); // Firestore instance
 
-// --- Generate a random 8-digit numeric code
+//Generates a random 8-digit numeric code
 function generate8DigitCode() {
   return Math.floor(10000000 + Math.random() * 90000000);
 }
 
-// --- Ensure code is unique in Firestore
+//Ensures code is unique in Firestore
 async function generateUniqueUserID() {
   let isUnique = false;
   let newCode;
@@ -72,7 +72,6 @@ export async function loginUser(email, password) {
     );
   }
 
-  // Wait a short moment to ensure Firestore write completes before redirect
   await getDoc(userDocRef);
 
   return userCredential;
@@ -108,7 +107,6 @@ export async function signupUser(name, email, password) {
     );
   }
 
-  // Wait a short moment to ensure Firestore write completes before redirect
   await getDoc(userDocRef);
 
   return user;
