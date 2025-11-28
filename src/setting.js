@@ -43,6 +43,7 @@ safeAddListener("logoutBtn", "click", () => {
   }
 });
 
+//Loads a status depending on if a selection box has been selected or not
 document.addEventListener("DOMContentLoaded", () => {
   const options = document.querySelectorAll(".option");
 

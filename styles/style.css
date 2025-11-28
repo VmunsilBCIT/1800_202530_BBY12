@@ -108,7 +108,7 @@ main {
    Profile Page
    =============================== */
 #profile {
-  min-height: calc(100vh - 72px - 76px); /* navbar & footer */
+  min-height: calc(100vh - 72px - 76px);
 
   padding-top: 100px;
   padding-bottom: 0px;
@@ -145,11 +145,11 @@ main {
 }
 
 .profile-img {
-  width: 150px; /* set any size you want */
+  width: 150px;
   height: 150px;
-  border-radius: 50%; /* makes it a circle */
-  object-fit: cover; /* auto-crops image to fill the circle */
-  object-position: center; /* center the crop */
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .profile-avatar {
@@ -229,7 +229,7 @@ main {
 #username-display::after {
   content: attr(data-tooltip);
   position: absolute;
-  top: 100%; /* show above the text */
+  top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(5px);
   background-color: #000;
@@ -265,7 +265,8 @@ main {
   color: rgb(0, 0, 0);
 }
 
-.navbar, footer {
+.navbar,
+footer {
   position: static;
   width: 100%;
 }
@@ -273,7 +274,6 @@ main {
 /* ===========================
    WHITE MINIMAL NAVBAR
    =========================== */
-/* Make the Web Component itself fixed */
 site-navbar {
   position: fixed !important;
   top: 0;
@@ -365,13 +365,13 @@ site-navbar .navbar {
 }
 
 #account {
-  filter: none !important; /* remove the dark/gray filter */
-  object-fit: cover; /* ensure it fills the 46x46 box nicely */
+  filter: none !important;
+  object-fit: cover;
   border-radius: 50%;
 }
 
 .nav-profile {
-  filter: none; /* Remove grayscale filter */
+  filter: none;
   width: 46px;
   height: 46px;
   border-radius: 50%;
@@ -384,36 +384,12 @@ site-navbar .navbar {
   transform: scale(1.08);
 }
 
-/* #setting,
-#back {
-  float: left;
-  padding: 10px;
-}
-
-#account {
-  float: right;
-  padding: 10px;
-}
-
-#friends {
-  float: right;
-  height: 14vh;
-  width: auto;
-  padding: 10px;
-}
-
-#home {
-  padding: 10px;
-  height: 12vh;
-  width: auto;
-} */
-
 #pingBtn {
   position: absolute;
-  bottom: 180px; /* distance from bottom of page */
-  left: 50%; /* center horizontally */
+  bottom: 180px;
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 10; /* ensure it's above the map */
+  z-index: 10;
   border-radius: 8px;
   padding: 10px 20px;
   font-weight: 500;
@@ -470,7 +446,7 @@ site-navbar .navbar {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   display: none;
   justify-content: center;
   align-items: center;
@@ -563,7 +539,6 @@ site-navbar .navbar {
   padding: 16px;
   box-sizing: border-box;
 }
-
 
 /* ===========================
    FOOTER – WHITE MINIMAL STYLE
@@ -944,7 +919,7 @@ footer {
 #messages-container {
   width: 100%;
   max-width: 900px;
-  margin: 120px auto 40px; /* below navbar */
+  margin: 120px auto 40px;
   padding: 20px;
   background: rgba(255, 255, 255, 0.85);
   border-radius: 12px;
@@ -1012,22 +987,18 @@ footer {
   background: white;
 }
 
-
 .about-card h4 {
   font-size: 1.1rem;
 }
-
 
 .about-card p {
   font-size: 0.9rem;
 }
 
-
 .about-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-
 
 #about-us {
   margin-top: -80px !important;
